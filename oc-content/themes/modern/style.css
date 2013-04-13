@@ -10,6 +10,13 @@ table {border-collapse: collapse;border-spacing: 0;}
 input:focus { outline:none; }
 .clear { clear:both; }
 
+body {
+
+     background-color: #E9D1BE;
+    
+    color: #0D1F26;
+}
+
 /* -- ERROR PAGES --------------------------------------- */
 #comment_error_list .error, #error_list .error { padding: 2px 0; clear: both; }
 .error h1 { font-size: 2.5em; text-align: center; }
@@ -138,7 +145,7 @@ ul.breadcrumb li { float: left; padding: 0 2px; }
 .home .search { border-bottom: 1px solid #BBB; margin-bottom:15px; }
 
 /* Latest ads list */
-.home #main h1 { border-bottom:2px solid #f2f2f2; color:#000; font:18px Georgia, Times, 'Times New Roman', serif; }
+.home #main h1 { border-bottom:2px solid #162341; color:#000; font:18px Georgia, Times, 'Times New Roman', serif; }
 .home #main h1 strong { border-bottom:1px solid #DDD; display:block; font-weight:normal; padding-bottom:7px; }
 .home #main .categories { clear:both; float:left; margin-bottom:25px; padding:15px 0 0 10px; width:100%; }
 .home #main .categories .col { float:left; width:215px; }
