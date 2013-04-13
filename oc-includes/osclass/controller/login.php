@@ -77,7 +77,11 @@
                                             $this->redirectTo(osc_user_login_url());
                                         }
 
-                                        if ( $user["s_password"] != sha1( Params::getParam('password', false, false) ) ) {
+//                                        error_log("sha1'd md5'd: " . sha1("{MD5}" . base64_encode(pack("H*", md5(Params::getParam('password', false, false))))) );
+ //                                       error_log("password: " . Params::getParam("password", false, false));
+
+                                        // Added a check to MD5 then SHA-1 the passwords, because the LDAP passwords are stored as MD5s
+                                        if ( $user["s_password"] != sha1( Params::getParam('password', false, false) ) && $user["s_password"] != sha1("{MD5}" . base64_encode(pack("H*", md5(Params::getParam('password', false, false))))) ) {
                                             osc_add_flash_error_message( _m('The password is incorrect'));
                                             $this->redirectTo(osc_user_login_url());
                                         }

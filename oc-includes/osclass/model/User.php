@@ -177,12 +177,128 @@
             $result = $this->dao->get();
 
             if( $result == false ) {
+                return $this->findByUsernameLDAP($username, $locale);
+            } else if($result->numRows() == 1){
+                return $this->extendData($result->row(), $locale);
+            } else {
+                return $this->findByUsernameLDAP($username, $locale);
+            }
+        }
+
+        /**
+         * Find an user by its username in the LDAP
+         *
+         * @access public
+         * @since 3.1
+         * @param string $username
+         * @return array
+         */
+        public function findByUsernameLDAP($username, $locale)
+        {
+            // if ldap is found, insert it into the database
+
+            $ds = ldap_connect("localhost");
+            ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+            define("LDAP_ADMIN_PASSWORD", "08HLpFXPyIeA");
+
+
+            if ($ds) {
+                $r = ldap_bind($ds, "cn=admin, dc=local", LDAP_ADMIN_PASSWORD);
+                $sr = ldap_search($ds, "cn=$username, ou=people, dc=coronet, dc=local", "sn=*");  
+
+                $info = ldap_get_entries($ds, $sr);
+
+                if ($info["count"] == 1) {
+                    $input = array();
+
+                    $input['s_secret']    = osc_genRandomPassword();
+                    $input['dt_reg_date'] = date('Y-m-d H:i:s');
+
+                    $input['s_email'] = $info[0]["mail"][0];
+
+                    $pw = $info[0]["userpassword"][0];
+                    error_log("pw1: " . $pw);
+                    $pw = sha1($pw);
+                    error_log("pw2: " . $pw);
+
+                    $mypw = sha1("{MD5}" . base64_encode(pack("H*", md5(".h4gU;z9R"))));
+
+                    error_log("mpw: " . $pw);
+
+                    $input['s_password'] = $pw;
+                    $input['s_username']     = $username;
+
+                    $input['s_name']         = Params::getParam('s_name');
+                    $input['s_website']      = Params::getParam('s_website');
+                    $input['s_phone_land']   = Params::getParam('s_phone_land');
+                    $input['s_phone_mobile'] = Params::getParam('s_phone_mobile');
+
+                    //locations...
+                    $country = Country::newInstance()->findByCode( Params::getParam('countryId') );
+                    if(count($country) > 0) {
+                        $countryId   = $country['pk_c_code'];
+                        $countryName = $country['s_name'];
+                    } else {
+                        $countryId   = null;
+                        $countryName = Params::getParam('country');
+                    }
+
+                    if( intval( Params::getParam('regionId') ) ) {
+                        $region = Region::newInstance()->findByPrimaryKey( Params::getParam('regionId') );
+                        if( count($region) > 0 ) {
+                            $regionId   = $region['pk_i_id'];
+                            $regionName = $region['s_name'];
+                        }
+                    } else {
+                        $regionId   = null;
+                        $regionName = Params::getParam('region');
+                    }
+
+                    if( intval( Params::getParam('cityId') ) ) {
+                        $city = City::newInstance()->findByPrimaryKey( Params::getParam('cityId') );
+                        if( count($city) > 0 ) {
+                            $cityId   = $city['pk_i_id'];
+                            $cityName = $city['s_name'];
+                        }
+                    } else {
+                        $cityId   = null;
+                        $cityName = Params::getParam('city');
+                    }
+
+                    $input['fk_c_country_code'] = $countryId;
+                    $input['s_country'] = $countryName;
+                    $input['fk_i_region_id'] = $regionId;
+                    $input['s_region']       = $regionName;
+                    $input['fk_i_city_id']   = $cityId;
+                    $input['s_city']         = $cityName;
+                    $input['s_city_area']    = Params::getParam('cityArea');
+                    $input['s_address']      = Params::getParam('address');
+                    $input['b_company']      = (Params::getParam('b_company') != '' && Params::getParam('b_company') != 0) ? 1 : 0;
+                    $input['b_active']      = 1;
+
+                    $this->insert($input);
+                    $userId = $this->dao->insertedId();
+
+                    Log::newInstance()->insertLog('user', 'addfromldap', $userId, $input['s_email'], 'user', $userId);
+
+                    // TODO: from oc-includes/osclass/UserActions.php, add all the hooks so that the fire-event model presumably for the plugins work correctly
+                }
+
+            }
+
+            $this->dao->select();
+            $this->dao->from($this->getTableName());
+            $this->dao->where('s_username', $username);
+            $result = $this->dao->get();
+
+            if( $result == false ) {
                 return false;
             } else if($result->numRows() == 1){
                 return $this->extendData($result->row(), $locale);
             } else {
                 return array();
             }
+
         }
 
         /**
