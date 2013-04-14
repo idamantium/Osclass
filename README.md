@@ -26,3 +26,4 @@ Go to [our site][installing] to get detailed information on installing Osclass.
 [irc]: http://webchat.freenode.net/?channels=osclass
 [license]: http://www.gnu.org/licenses/agpl-3.0.html
 [installing]: http://osclass.org/installing-osclass/
+
