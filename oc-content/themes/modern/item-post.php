@@ -99,6 +99,10 @@
                 <fieldset>
                 <input type="hidden" name="action" value="item_add_post" />
                 <input type="hidden" name="page" value="item" />
+
+
+<!-- General Listing Info Entry -->
+
                     <div class="box general_info">
                         <h2><?php _e('General Information', 'modern'); ?></h2>
                         <div class="row">
@@ -128,30 +132,37 @@
                     </div>
                     <?php } ?>
 
+
+
+<!-- Listing Location Entry -->
                     <div class="box location">
                         <h2><?php _e('Listing Location', 'modern'); ?></h2>
+                      <div class="row">
+                           <label for="countryId"><?php _e('Neighborhood', 'modern'); ?></label>
+                           <?php ItemForm::country_select(osc_get_countries(), osc_user()); ?>
+                       </div> 
                         <div class="row">
-                            <label for="countryId"><?php _e('Country', 'modern'); ?></label>
-                            <?php ItemForm::country_select(osc_get_countries(), osc_user()); ?>
+                            <label for="regionId"><?php _e('Near', 'modern'); ?></label>
+                            <?php ItemForm::region_select(osc_get_regions()); ?>
                         </div>
-                        <div class="row">
-                            <label for="regionId"><?php _e('Region', 'modern'); ?></label>
-                            <?php ItemForm::region_text(osc_user()); ?>
-                        </div>
-                        <div class="row">
+                        <!--IB  <div class="row">
                             <label for="city"><?php _e('City', 'modern'); ?></label>
                             <?php ItemForm::city_text(osc_user()); ?>
-                        </div>
-                        <div class="row">
-                            <label for="city"><?php _e('City Area', 'modern'); ?></label>
-                            <?php ItemForm::city_area_text(osc_user()); ?>
-                        </div>
-                        <div class="row">
+
+                            <div class="row">
                             <label for="address"><?php _e('Address', 'modern'); ?></label>
                             <?php ItemForm::address_text(osc_user()); ?>
                         </div>
+                        </div> -->
+                        <div class="row">
+                            <label for="city">So, where exactly?<?php //_e('City Area', 'modern'); ?></label>
+                            <?php ItemForm::city_area_text(osc_user()); ?>
+                        </div>
+                        
                     </div>
-                    <!-- seller info -->
+
+
+<!-- seller info -->
                     <?php if(!osc_is_web_user_logged_in() ) { ?>
                     <div class="box seller_info">
                         <h2><?php _e("Seller's information", 'modern'); ?></h2>

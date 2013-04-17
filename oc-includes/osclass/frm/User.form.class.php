@@ -115,7 +115,7 @@
 
         static public function region_select($regions, $user = null) {
             if( count($regions) >= 1 ) {
-                parent::generic_select('regionId', $regions, 'pk_i_id', 's_name', __('Select a region...'), (isset($user['fk_i_region_id'])) ? $user['fk_i_region_id'] : null);
+                parent::generic_select('regionId', $regions, 'pk_i_id', 's_name', __('Select an area...'), (isset($user['fk_i_region_id'])) ? $user['fk_i_region_id'] : null);
 //            } else if ( count($regions) == 1 ) {
 //                parent::generic_input_hidden('countryId', (isset($user['fk_i_region_id'])) ? $user['fk_i_region_id'] : $regions[0]['pk_i_id']);
 //                echo '<span>' .$regions[0]['s_name'] . '</span>';
@@ -341,7 +341,7 @@ function checkForm() {
                     success: function(data){
                         var length = data.length;
                         if(length > 0) {
-                            result += '<option value=""><?php _e("Select a region..."); ?></option>';
+                            result += '<option value=""><?php _e("Select an area..."); ?></option>';
                             for(key in data) {
                                 result += '<option value="' + data[key].pk_i_id + '">' + data[key].s_name + '</option>';
                             }
@@ -365,16 +365,16 @@ function checkForm() {
                  });
              } else {
                  // add empty select
-                 $("#region").before('<select name="regionId" id="regionId" ><option value=""><?php _e("Select a region..."); ?></option></select>');
+                 $("#region").before('<select name="regionId" id="regionId" ><option value=""><?php _e("Select an area..."); ?></option></select>');
                  $("#region").remove();
 
                  $("#city").before('<select name="cityId" id="cityId" ><option value=""><?php _e("Select a city..."); ?></option></select>');
                  $("#city").remove();
 
                  if( $("#regionId").length > 0 ){
-                     $("#regionId").html('<option value=""><?php _e("Select a region..."); ?></option>');
+                     $("#regionId").html('<option value=""><?php _e("Select an area..."); ?></option>');
                  } else {
-                     $("#region").before('<select name="regionId" id="regionId" ><option value=""><?php _e("Select a region..."); ?></option></select>');
+                     $("#region").before('<select name="regionId" id="regionId" ><option value=""><?php _e("Select an area..."); ?></option></select>');
                      $("#region").remove();
                  }
                  if( $("#cityId").length > 0 ){

@@ -313,7 +313,7 @@
                 if( Session::newInstance()->_getForm('countryId') != "" ) {
                     $item['fk_c_country_code'] = Session::newInstance()->_getForm('countryId');
                 }
-                parent::generic_select('countryId', $countries, 'pk_c_code', 's_name', __('Select a country...'), (isset($item['fk_c_country_code'])) ? $item['fk_c_country_code'] : null);
+                parent::generic_select('countryId', $countries, 'pk_c_code', 's_name', __('Select a neighborhood...'), (isset($item['fk_c_country_code'])) ? $item['fk_c_country_code'] : null);
                 return true;
             } else {
                 if( Session::newInstance()->_getForm('country') != "" ) {
@@ -357,7 +357,7 @@
                 if( Session::newInstance()->_getForm('regionId') != "" ) {
                     $item['fk_i_region_id'] = Session::newInstance()->_getForm('regionId');
                 }
-                parent::generic_select('regionId', $regions, 'pk_i_id', 's_name', __('Select a region...'), (isset($item['fk_i_region_id'])) ? $item['fk_i_region_id'] : null);
+                parent::generic_select('regionId', $regions, 'pk_i_id', 's_name', __('Select a landmark...'), (isset($item['fk_i_region_id'])) ? $item['fk_i_region_id'] : null);
                 return true;
             } else {
                 if( Session::newInstance()->_getForm('region') != "" ) {

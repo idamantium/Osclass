@@ -4303,7 +4303,7 @@ msgstr ""
 #: /var/www/osclass-git/oc-includes/osclass/frm/Item.form.class.php:613
 #: /var/www/osclass-git/oc-includes/osclass/frm/Item.form.class.php:620
 #: /var/www/osclass-git/oc-includes/osclass/frm/Item.form.class.php:622
-msgid "Select a region..."
+msgid "Select an area..."
 msgstr ""
 
 #: /var/www/osclass-git/oc-includes/osclass/frm/Item.form.class.php:289
