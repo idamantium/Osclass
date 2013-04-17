@@ -133,29 +133,33 @@
                         </div>
                         <?php } ?>
 
-                        <div class="box location">
-                            <h2><?php _e('Location', 'modern'); ?></h2>
-                            <div class="row">
-                                <label><?php _e('Country', 'modern'); ?></label>
-                                <?php ItemForm::country_select(); ?>
-                            </div>
-                            <div class="row">
-                                <label><?php _e('Region', 'modern'); ?></label>
-                                <?php ItemForm::region_text(); ?>
-                            </div>
-                            <div class="row">
-                                <label><?php _e('City', 'modern'); ?></label>
-                                <?php ItemForm::city_text(); ?>
-                            </div>
-                            <div class="row">
-                                <label><?php _e('City area', 'modern'); ?></label>
-                                <?php ItemForm::city_area_text(); ?>
-                            </div>
-                            <div class="row">
-                                <label><?php _e('Address', 'modern'); ?></label>
-                                <?php ItemForm::address_text(); ?>
-                            </div>
+<!-- Listing Location Entry -->
+                    <div class="box location">
+                        <h2><?php _e('Listing Location', 'modern'); ?></h2>
+                      <div class="row">
+                           <label for="countryId"><?php _e('Neighborhood', 'modern'); ?></label>
+                           <?php ItemForm::country_select(osc_get_countries(), osc_user()); ?>
+                       </div> 
+                        <div class="row">
+                            <label for="regionId"><?php _e('Near', 'modern'); ?></label>
+                            <?php ItemForm::region_select(osc_get_regions()); ?>
                         </div>
+
+                        <!--IB  <div class="row">
+                            <label for="city"><?php _e('City', 'modern'); ?></label>
+                            <?php ItemForm::city_text(osc_user()); ?>
+
+                            <div class="row">
+                            <label for="address"><?php _e('Address', 'modern'); ?></label>
+                            <?php ItemForm::address_text(osc_user()); ?>
+                       
+                        </div> -->
+                        <div class="row">
+                            <label for="city">So, where exactly?<?php //_e('City Area', 'modern'); ?></label>
+                            <?php ItemForm::city_area_text(osc_user()); ?>
+                        </div>
+                        
+                    </div>
                         <?php ItemForm::plugin_edit_item(); ?>
                         <?php if( osc_recaptcha_items_enabled() ) {?>
                         <div class="box">
