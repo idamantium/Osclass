@@ -199,12 +199,11 @@
 
             $ds = ldap_connect("localhost");
             ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-            define("LDAP_ADMIN_PASSWORD", "08HLpFXPyIeA");
 
 
             if ($ds) {
-                $r = ldap_bind($ds, "cn=admin, dc=local", LDAP_ADMIN_PASSWORD);
-                $sr = ldap_search($ds, "cn=$username, ou=people, dc=coronet, dc=local", "sn=*");  
+                $r = ldap_bind($ds, LDAP_ADMIN_DOMAIN, LDAP_ADMIN_PASSWORD);
+                $sr = ldap_search($ds, "cn=$username, " . LDAP_PEOPLE_DOMAIN, "sn=*");  
 
                 $info = ldap_get_entries($ds, $sr);
 
@@ -220,10 +219,6 @@
                     error_log("pw1: " . $pw);
                     $pw = sha1($pw);
                     error_log("pw2: " . $pw);
-
-                    $mypw = sha1("{MD5}" . base64_encode(pack("H*", md5(".h4gU;z9R"))));
-
-                    error_log("mpw: " . $pw);
 
                     $input['s_password'] = $pw;
                     $input['s_username']     = $username;
