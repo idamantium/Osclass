@@ -52,6 +52,7 @@
             $aItem['price']    = !is_null($aItem['price']) ? strip_tags( trim( $aItem['price'] ) ) : $aItem['price'];
             $contactName       = osc_sanitize_name( strip_tags( trim( $aItem['contactName'] ) ) );
             $contactEmail      = strip_tags( trim( $aItem['contactEmail'] ) );
+            $contactPhone      = strip_tags( trim( $aItem['contactPhone'] ) );
             $aItem['cityArea'] = osc_sanitize_name( strip_tags( trim( $aItem['cityArea'] ) ) );
             $aItem['address']  = osc_sanitize_name( strip_tags( trim( $aItem['address'] ) ) );
 
@@ -148,6 +149,7 @@
                     'fk_c_currency_code'    => $aItem['currency'],
                     's_contact_name'        => $contactName,
                     's_contact_email'       => $contactEmail,
+                    's_contact_phone'       => $contactPhone,
                     's_secret'              => $code,
                     'b_active'              => ($active=='ACTIVE'?1:0),
                     'b_enabled'             => 1,
@@ -1027,9 +1029,10 @@
 
             if($userId != null) {
                 $aItem['contactName']   = $data['s_name'];
-                $aItem['contactEmail']  = $data['s_email'];
+//                $aItem['contactEmail']  = $data['s_email'];
                 Params::setParam('contactName', $data['s_name']);
-                Params::setParam('contactEmail', $data['s_email']);
+//                Params::setParam('contactEmail', $data['s_email']);
+                $aItem['contactEmail']  = Params::getParam('contactEmail');
             } else {
                 $aItem['contactName']   = Params::getParam('contactName');
                 $aItem['contactEmail']  = Params::getParam('contactEmail');
@@ -1086,6 +1089,7 @@
             $aItem['showEmail']     = (Params::getParam('showEmail') != '') ? 1 : 0;
             $aItem['title']         = Params::getParam('title');
             $aItem['description']   = Params::getParam('description');
+            $aItem['contactPhone']  = Params::getParam('contactPhone');
             $aItem['photos']        = Params::getFiles('photos');
             $aItem['s_ip']          = get_ip();
 

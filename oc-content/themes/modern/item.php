@@ -213,39 +213,16 @@
                     <?php } else { ?>
                         <?php /*if( osc_item_user_id() != null ) { ?>
                             <p class="name"><?php _e('Name', 'modern') ?>: <a href="<?php echo osc_user_public_profile_url( osc_item_user_id() ); ?>" ><?php echo osc_item_contact_name(); ?></a></p>
-                        <?php } else { ?>
+                        <?php } else { */ ?>
                             <p class="name"><?php _e('Name', 'modern') ?>: <?php echo osc_item_contact_name(); ?></p>
-                        <?php } ?>
-                        <?php if( osc_item_show_email() ) { ?>
+                        <?php /*}*/ ?>
+                        <?php if( osc_item_contact_email() != '' ) { ?>
                             <p class="email"><?php _e('E-mail', 'modern'); ?>: <?php echo osc_item_contact_email(); ?></p>
                         <?php } ?>
-                        <?php if ( osc_user_phone() != '' ) { ?>
-                            <p class="phone"><?php _e("Telly", 'modern'); ?>.: <?php echo osc_user_phone(); ?></p>
-                        <?php }*/ ?>
-                        <?php
-                        // connect to LDAP, figure out what's available, and show it
-                        $ldap = LDAP::getConnection();
-                        $user = osc_item_username();
-
-                        if ($ldap->bind() && $ldap->getUserEntry($user)) {
-                          // add username
-
-                          echo "<p class='name'>$user</p>";
-
-                          // add mail
-                          $mail = $ldap->getWebEmail($user);
-                          if ($mail) {
-                            echo "<p class='email'>$mail</p>";
-                          }
-
-                          // add phone
-                          $phone = $ldap->getPhone($user);
-                          if ($phone) {
-                            echo "<p class='phone'>$phone</p>";
-                          }
-                        }
-                        ?>
-                        <ul id="error_list"></ul>
+                        <?php if ( osc_item_contact_phone() != '' ) { ?>
+                            <p class="phone"><?php _e("Phone", 'modern'); ?>: <?php echo osc_item_contact_phone(); ?></p>
+                        <?php } ?>
+                       <ul id="error_list"></ul>
                        <!-- IB <?php ContactForm::js_validation(); ?>
                         <form action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form">
                             <?php osc_prepare_user_info(); ?>

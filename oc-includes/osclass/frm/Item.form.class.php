@@ -442,12 +442,31 @@
             return true;
         }
 
-        static public function contact_email_text($item = null) {
+        static public function contact_email_text($item = null, $defaultValue = null) {
             if($item==null) { $item = osc_item(); };
             if( Session::newInstance()->_getForm('contactEmail') != "" ) {
                 $item['s_contact_email'] = Session::newInstance()->_getForm('contactEmail');
             }
-            parent::generic_input_text('contactEmail', (isset($item['s_contact_email'])) ? $item['s_contact_email'] : null);
+            if (isset($defaultValue)) {
+                $fieldValue = $defaultValue;
+            } else {
+                $fieldValue = (isset($item['s_contact_email'])) ? $item['s_contact_email'] : null;
+            }
+            parent::generic_input_text('contactEmail', $fieldValue);
+            return true;
+        }
+
+        static public function contact_phone_text($item = null, $defaultValue = null) {
+            if($item==null) { $item = osc_item(); };
+            if( Session::newInstance()->_getForm('contactPhone') != "" ) {
+                $item['s_contact_phone'] = Session::newInstance()->_getForm('contactPhone');
+            }
+            if (isset($defaultValue)) {
+                $fieldValue = $defaultValue;
+            } else {
+                $fieldValue = (isset($item['s_contact_phone'])) ? $item['s_contact_phone'] : null;
+            }
+            parent::generic_input_text('contactPhone', $fieldValue);
             return true;
         }
         // NOTHING TO DO
@@ -533,6 +552,11 @@
                     $('#cityId').val(ui.item.id);
                 }
             });
+        });
+
+        $('#clearContact').click(function() {
+            $('#contactEmail').val('');
+            $('#contactPhone').val('');
         });
 
         /**

@@ -170,25 +170,47 @@
 
 
 <!-- seller info -->
-                    <?php if(!osc_is_web_user_logged_in() ) { ?>
+                    <?php /*if(!osc_is_web_user_logged_in() ) {*/ ?>
+<?php
+
+                    // Grab LDAP info and add it as the default information
+
+                    $field_email = "";
+                    $field_phone = "";
+
+                    if(osc_is_web_user_logged_in() ) {
+                        $user = osc_logged_user_name();
+                        $ldap = LDAP::getConnection();
+                        if ($ldap->bind() && $ldap->getUserEntry($user)) {
+                            $field_email = $ldap->getWebEmail($user);
+                            $field_phone = $ldap->getPhone($user);
+                            $ldap->unbind();
+                        }
+                    }
+?>
                     <div class="box seller_info">
-                        <h2><?php _e("Seller's information", 'modern'); ?></h2>
+                        <h2><?php _e("Your information", 'modern'); ?></h2>
                         <div class="row">
-                            <label for="contactName"><?php _e('Name', 'modern'); ?></label>
-                            <?php ItemForm::contact_name_text(); ?>
+                            <label for="contactEmail"><?php _e('E-mail', 'modern'); ?></label>
+                            <?php ItemForm::contact_email_text(NULL, $field_email); ?>
                         </div>
                         <div class="row">
-                            <label for="contactEmail"><?php _e('E-mail', 'modern'); ?> *</label>
-                            <?php ItemForm::contact_email_text(); ?>
+                            <label for="contactPhone"><?php _e('Phone', 'modern'); ?></label>
+                            <?php ItemForm::contact_phone_text(NULL, $field_phone); ?>
                         </div>
+                        <div class="row">
+                            <button id="clearContact" type="button">Clear contact information</button>
+                        </div>
+<?php /*
                         <div class="row">
                             <div style="width: 120px;text-align: right;float:left;">
                                 <?php ItemForm::show_email_checkbox(); ?>
                             </div>
                             <label for="showEmail" style="width: 250px;"><?php _e('Show e-mail on the listing page', 'modern'); ?></label>
                         </div>
+*/ ?>
                     </div>
-                    <?php }; ?>
+                    <?php /*};*/ ?>
                     <?php ItemForm::plugin_post_item(); ?>
                     <?php if( osc_recaptcha_items_enabled() ) {?>
                     <div class="box">

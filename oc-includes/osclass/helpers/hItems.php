@@ -317,6 +317,15 @@
     }
 
     /**
+     * Gets contact phone of current item
+     *
+     * @return string
+     */
+    function osc_item_contact_phone() {
+        return (string) osc_item_field("s_contact_phone");
+    }
+
+    /**
      * Gets country name of current item
      *
      * @return string
