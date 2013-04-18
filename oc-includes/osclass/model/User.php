@@ -197,33 +197,24 @@
         {
             // if ldap is found, insert it into the database
 
-            $ds = ldap_connect(LDAP_SERVER);
-            ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+            $ldap = LDAP::getConnection();
 
-
-            if ($ds) {
-                $r = ldap_bind($ds, LDAP_ADMIN_DOMAIN, LDAP_ADMIN_PASSWORD);
-                $sr = ldap_search($ds, "cn=$username, " . LDAP_PEOPLE_DOMAIN, "sn=*");  
-
-                $info = ldap_get_entries($ds, $sr);
-
-                if ($info["count"] == 1) {
+            if ($ldap) {
+                if ($ldap->bindAdmin(LDAP_ADMIN_PASSWORD) && $ldap->getUserEntry($username)) {
                     $input = array();
 
                     $input['s_secret']    = osc_genRandomPassword();
                     $input['dt_reg_date'] = date('Y-m-d H:i:s');
 
-                    $input['s_email'] = $info[0]["mail"][0];
+                    $input['s_email'] = $ldap->getInternalEmail($username);
 
-                    $pw = $info[0]["userpassword"][0];
-                    error_log("pw1: " . $pw);
+                    $pw = $ldap->getPassword($username);
                     $pw = sha1($pw);
-                    error_log("pw2: " . $pw);
 
                     $input['s_password'] = $pw;
                     $input['s_username']     = $username;
 
-                    $input['s_name']         = Params::getParam('s_name');
+                    $input['s_name']         = $username;
                     $input['s_website']      = Params::getParam('s_website');
                     $input['s_phone_land']   = Params::getParam('s_phone_land');
                     $input['s_phone_mobile'] = Params::getParam('s_phone_mobile');
@@ -277,6 +268,8 @@
                     Log::newInstance()->insertLog('user', 'addfromldap', $userId, $input['s_email'], 'user', $userId);
 
                     // TODO: from oc-includes/osclass/UserActions.php, add all the hooks so that the fire-event model presumably for the plugins work correctly
+
+                    $ldap->unbind();
                 }
 
             }

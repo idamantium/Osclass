@@ -224,34 +224,24 @@
                         <?php }*/ ?>
                         <?php
                         // connect to LDAP, figure out what's available, and show it
-                        $ds = ldap_connect(LDAP_SERVER);
-                        ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+                        $ldap = LDAP::getConnection();
+                        $user = osc_item_username();
 
-                        if ($ds) {
-                          $r = ldap_bind($ds);
+                        if ($ldap->bind() && $ldap->getUserEntry($user)) {
+                          // add username
 
-                          if ($r) {
-                            $user = osc_item_username();
-                            $sr = ldap_search($ds, "cn=$user, " . LDAP_PEOPLE_DOMAIN, "sn=*");
-                            $info = ldap_get_entries($ds, $sr);
+                          echo "<p class='name'>$user</p>";
 
-                            if ($info["count"] == 1) {
-                              // add username
-                              
-                              echo "<p class='name'>$user</p>";
+                          // add mail
+                          $mail = $ldap->getWebEmail($user);
+                          if ($mail) {
+                            echo "<p class='email'>$mail</p>";
+                          }
 
-                              // add mail
-                              $mails = $info[0]["mail"];
-                              if ($mails["count"] > 1) {
-                                echo "<p class='email'>{$info[0]["mail"][1]}</p>"; // the 2nd email address is the external address...
-                              }
-
-                              // add phone
-                              $phones = $info[0]["homephone"];
-                              if ($phones["count"] > 0) {
-                                echo "<p class='phone'>{$info[0]["homephone"][0]}</p>";
-                              }
-                            }
+                          // add phone
+                          $phone = $ldap->getPhone($user);
+                          if ($phone) {
+                            echo "<p class='phone'>$phone</p>";
                           }
                         }
                         ?>

@@ -189,6 +189,8 @@ require_once LIB_PATH . 'osclass/frm/BanRule.form.class.php';
 require_once LIB_PATH . 'osclass/functions.php';
 require_once LIB_PATH . 'osclass/helpers/hAdminMenu.php';
 
+require_once LIB_PATH . 'osclass/helpers/ldap.php';
+
 define('__OSC_LOADED__', true);
 
 // Moved from BaseModel, since we need some session magic on index.php;)
