@@ -481,10 +481,18 @@
         $('#city').attr( "autocomplete", "off" );
 
         $('#countryId').change(function(){
-            $('#regionId').val('');
+            $('#regionId').val('').find('option').remove().end();
             $('#region').val('');
             $('#cityId').val('');
             $('#city').val('');
+            $.getJSON('<?php echo osc_base_url(true); ?>?page=ajax&action=location_regions&country=' + $(this).val(),  function(data) {
+                $('#regionId').append('<option value="none">Choose a landmark...</option>');
+                $.each(data, function(key, val) {
+                    option = val['value'];
+                    $('#regionId').append('<option value=' + option + '>' + option + '</option>');
+                });
+                $('#regionId').val($("#regionId option:first").val());
+            });
         });
 
         $('#countryName').live('keyup.autocomplete', function(){
