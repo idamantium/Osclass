@@ -83,10 +83,10 @@
                     <em class="update"><?php if ( osc_item_mod_date() != '' ) echo __('Modified date', 'modern') . ': ' . osc_format_date( osc_item_mod_date() ); ?></em>
                 </div>
                 <ul id="item_location">
-                    <?php if ( osc_item_country() != "" ) { ?><li><?php _e("Country", 'modern'); ?>: <strong><?php echo osc_item_country(); ?></strong></li><?php } ?>
-                    <?php if ( osc_item_region() != "" ) { ?><li><?php _e("Region", 'modern'); ?>: <strong><?php echo osc_item_region(); ?></strong></li><?php } ?>
+                    <?php if ( osc_item_country() != "" ) { ?><li><?php _e("Neighborhood", 'modern'); ?>: <strong><?php echo osc_item_country(); ?></strong></li><?php } ?>
+                    <?php if ( osc_item_region() != "" ) { ?><li><?php _e("Near", 'modern'); ?>: <strong><?php echo osc_item_region(); ?></strong></li><?php } ?>
                     <?php if ( osc_item_city() != "" ) { ?><li><?php _e("City", 'modern'); ?>: <strong><?php echo osc_item_city(); ?></strong></li><?php } ?>
-                    <?php if ( osc_item_city_area() != "" ) { ?><li><?php _e("City area", 'modern'); ?>: <strong><?php echo osc_item_city_area(); ?></strong></li><?php } ?>
+                    <?php if ( osc_item_city_area() != "" ) { ?><li><?php _e("Where exactly?", 'modern'); ?>: <strong><?php echo osc_item_city_area(); ?></strong></li><?php } ?>
                     <?php if ( osc_item_address() != "" ) { ?><li><?php _e("Address", 'modern'); ?>: <strong><?php echo osc_item_address(); ?></strong></li><?php } ?>
                 </ul>
                 <div id="description">
@@ -106,7 +106,7 @@
                         <?php } ?>
                     </div>
                     <?php osc_run_hook('item_detail', osc_item() ); ?>
-                    <p class="contact_button">
+                   <!-- <p class="contact_button">
                         <?php if( !osc_item_is_expired () ) { ?>
                         <?php if( !( ( osc_logged_user_id() == osc_item_user_id() ) && osc_logged_user_id() != 0 ) ) { ?>
                             <?php     if(osc_reg_user_can_contact() && osc_is_web_user_logged_in() || !osc_reg_user_can_contact() ) { ?>
@@ -115,11 +115,13 @@
                         <?php     } ?>
                         <?php } ?>
                         <strong class="share"><a href="<?php echo osc_item_send_friend_url(); ?>" rel="nofollow"><?php _e('Share', 'modern'); ?></a></strong>
-                    </p>
+                    </p> -->
                     <?php osc_run_hook('location'); ?>
                 </div>
-                <!-- plugins -->
-                <div id="useful_info">
+ <!-- plugins -->
+
+
+              <!--IB   <div id="useful_info">
                     <h2><?php _e('Useful information', 'modern'); ?></h2>
                     <ul>
                         <li><?php _e('Avoid scams by acting locally or paying with PayPal', 'modern'); ?></li>
@@ -127,7 +129,7 @@
                         <li><?php _e('Don\'t buy or sell outside of your country. Don\'t accept cashier cheques from outside your country', 'modern'); ?></li>
                         <li><?php _e('This site is never involved in any transaction, and does not handle payments, shipping, guarantee transactions, provide escrow services, or offer "buyer protection" or "seller certification"', 'modern'); ?></li>
                     </ul>
-                </div>
+                </div> -->
                 <?php if( osc_comments_enabled() ) { ?>
                     <?php if( osc_reg_user_post_comments () && osc_is_web_user_logged_in() || !osc_reg_user_post_comments() ) { ?>
                     <div id="comments">
@@ -154,7 +156,7 @@
                         <?php } ?>
                         <form action="<?php echo osc_base_url(true); ?>" method="post" name="comment_form" id="comment_form">
                             <fieldset>
-                                <h3><?php _e('Leave your comment (spam and offensive messages will be removed)', 'modern'); ?></h3>
+                                <h3><?php _e('Leave your comment', 'modern'); ?></h3>
                                 <input type="hidden" name="action" value="add_comment" />
                                 <input type="hidden" name="page" value="item" />
                                 <input type="hidden" name="id" value="<?php echo osc_item_id(); ?>" />
@@ -221,7 +223,7 @@
                             <p class="phone"><?php _e("Tel", 'modern'); ?>.: <?php echo osc_user_phone(); ?></p>
                         <?php } ?>
                         <ul id="error_list"></ul>
-                        <?php ContactForm::js_validation(); ?>
+                       <!-- IB <?php ContactForm::js_validation(); ?>
                         <form action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form">
                             <?php osc_prepare_user_info(); ?>
                             <fieldset>
@@ -251,7 +253,7 @@
                                 <?php osc_show_recaptcha(); ?>
                                 <button type="submit"><?php _e('Send', 'modern'); ?></button>
                             </fieldset>
-                        </form>
+                        </form> -->
                     <?php } ?>
                 </div>
             </div>

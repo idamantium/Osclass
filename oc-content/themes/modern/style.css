@@ -639,3 +639,28 @@ div.uploader input { opacity: 0; filter: alpha(opacity:0); position: absolute; t
 .filters #search-example{
     padding:5px 0;
 }
+
+
+/******** IDA CUSTOM STYLES *********************/
+/************************************************/
+
+.location-section-one {
+    width: 60%;
+    float: left;
+
+}
+
+.location-section-two {
+
+        width: 40%;
+    float: left;
+
+
+}
+
+.location-section-two img {
+
+    width: 100%;
+}
+
+
