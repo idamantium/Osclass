@@ -128,6 +128,16 @@
     }
 
     /**
+    * Gets user name from current item
+    *
+    * @return string
+    */
+    function osc_item_username() {
+        $user = User::newInstance()->findByPrimaryKey( osc_item_user_id() );
+        return $user["s_username"];
+    }
+
+    /**
     * Gets user id from current item
     *
     * @return int

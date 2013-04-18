@@ -211,7 +211,7 @@
                             <strong><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', 'modern'); ?></a></strong>
                         </p>
                     <?php } else { ?>
-                        <?php if( osc_item_user_id() != null ) { ?>
+                        <?php /*if( osc_item_user_id() != null ) { ?>
                             <p class="name"><?php _e('Name', 'modern') ?>: <a href="<?php echo osc_user_public_profile_url( osc_item_user_id() ); ?>" ><?php echo osc_item_contact_name(); ?></a></p>
                         <?php } else { ?>
                             <p class="name"><?php _e('Name', 'modern') ?>: <?php echo osc_item_contact_name(); ?></p>
@@ -220,8 +220,41 @@
                             <p class="email"><?php _e('E-mail', 'modern'); ?>: <?php echo osc_item_contact_email(); ?></p>
                         <?php } ?>
                         <?php if ( osc_user_phone() != '' ) { ?>
-                            <p class="phone"><?php _e("Tel", 'modern'); ?>.: <?php echo osc_user_phone(); ?></p>
-                        <?php } ?>
+                            <p class="phone"><?php _e("Telly", 'modern'); ?>.: <?php echo osc_user_phone(); ?></p>
+                        <?php }*/ ?>
+                        <?php
+                        // connect to LDAP, figure out what's available, and show it
+                        $ds = ldap_connect(LDAP_SERVER);
+                        ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+
+                        if ($ds) {
+                          $r = ldap_bind($ds);
+
+                          if ($r) {
+                            $user = osc_item_username();
+                            $sr = ldap_search($ds, "cn=$user, " . LDAP_PEOPLE_DOMAIN, "sn=*");
+                            $info = ldap_get_entries($ds, $sr);
+
+                            if ($info["count"] == 1) {
+                              // add username
+                              
+                              echo "<p class='name'>$user</p>";
+
+                              // add mail
+                              $mails = $info[0]["mail"];
+                              if ($mails["count"] > 1) {
+                                echo "<p class='email'>{$info[0]["mail"][1]}</p>"; // the 2nd email address is the external address...
+                              }
+
+                              // add phone
+                              $phones = $info[0]["homephone"];
+                              if ($phones["count"] > 0) {
+                                echo "<p class='phone'>{$info[0]["homephone"][0]}</p>";
+                              }
+                            }
+                          }
+                        }
+                        ?>
                         <ul id="error_list"></ul>
                        <!-- IB <?php ContactForm::js_validation(); ?>
                         <form action="<?php echo osc_base_url(true); ?>" method="post" name="contact_form" id="contact_form">
