@@ -27,4 +27,6 @@ define('WEB_PATH', 'http://localhost');
 define("LDAP_ADMIN_PASSWORD", "password");
 define("LDAP_PEOPLE_DOMAIN", "ou=people, dc=domain, dc=com");
 define("LDAP_ADMIN_DOMAIN", "cn=admin, dc=com");
+
+define("OUTERNET_PROFILE_PAGE_URL", "http://localhost/outernet-profile/login.php");
 ?>

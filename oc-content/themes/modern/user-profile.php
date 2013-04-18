@@ -42,6 +42,7 @@
             <div id="main" class="modify_profile">
                 <h2><?php _e('Update your profile', 'modern'); ?></h2>
                 <?php UserForm::location_javascript(); ?>
+<?php /*
                 <script type="text/javascript">
                     $(document).ready(function(){
                         $("#delete_account").click(function(){
@@ -132,6 +133,8 @@
                         <?php osc_run_hook('user_form'); ?>
                     </fieldset>
                 </form>
+ */ ?>
+                <p>Update your profile at the <a href="<? echo OUTERNET_PROFILE_PAGE_URL; ?>">Outernet profile page</a>.</p>
             </div>
         </div>
         <div id="dialog-delete-account" title="<?php _e('Delete account', 'modern'); ?>" class="has-form-actions hide">
