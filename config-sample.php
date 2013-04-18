@@ -24,6 +24,7 @@ define('REL_WEB_URL', 'rel_here');
 
 define('WEB_PATH', 'http://localhost');
 
+define("LDAP_SERVER", "localhost");
 define("LDAP_ADMIN_PASSWORD", "password");
 define("LDAP_PEOPLE_DOMAIN", "ou=people, dc=domain, dc=com");
 define("LDAP_ADMIN_DOMAIN", "cn=admin, dc=com");
