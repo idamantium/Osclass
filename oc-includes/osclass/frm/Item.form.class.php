@@ -486,10 +486,11 @@
             $('#cityId').val('');
             $('#city').val('');
             $.getJSON('<?php echo osc_base_url(true); ?>?page=ajax&action=location_regions&country=' + $(this).val(),  function(data) {
-                $('#regionId').append('<option value="none">Choose a landmark...</option>');
+                $('#regionId').append('<option value="">Choose a landmark...</option>');
                 $.each(data, function(key, val) {
+                    console.log(val);
                     option = val['value'];
-                    $('#regionId').append('<option value=' + option + '>' + option + '</option>');
+                    $('#regionId').append('<option value=' + val['id'] + '>' + option + '</option>');
                 });
                 $('#regionId').val($("#regionId option:first").val());
             });
