@@ -214,7 +214,7 @@
                     <div class="box expiry">
                         <h2><?php _e("Post expiry", 'modern'); ?></h2>
                         <div class="row">
-                            <label for="expiryValue"><?php _e('Expiry', 'modern'); ?></label>
+                            <label for="expiry"><?php _e('Expiry', 'modern'); ?></label>
                             <?php ItemForm::expiry_select(2*24*60*60); ?>
                         </div>
                     </div>

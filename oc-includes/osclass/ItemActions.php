@@ -380,7 +380,7 @@
                     $aItem['currency'] = NULL;
                 }
 
-                error_log(implode("|", $aItem));
+                error_log(implode("|", array_keys($aItem)));
 
                 $aUpdate = array(
                     'dt_mod_date'         => date('Y-m-d H:i:s')
@@ -397,6 +397,14 @@
                     $aUpdate['fk_i_user_id']    = $aItem['userId'];
                     $aUpdate['s_contact_name']  = $aItem['contactName'];
                     $aUpdate['s_contact_email'] = $aItem['contactEmail'];
+                }
+
+                if (isset($aItem["updateExpiry"])) {
+                    // Calculate the expiry of the listing
+                    error_log("updating expiry... " . $aItem['expiry']);
+                    $expiryDate = new DateTime('NOW');
+                    $expiryDate->add(new DateInterval("PT{$aItem['expiry']}S"));
+                    $aUpdate['dt_expiration'] = $expiryDate->format('Y-m-d H:i:s');
                 }
 
                 $result = $this->manager->update( $aUpdate, array('pk_i_id'  => $aItem['idItem'],
@@ -422,13 +430,14 @@
 
                 $dt_expiration = $old_item['dt_expiration'];
                 // recalculate dt_expiration t_item
-                if( $result==1 && $old_item['fk_i_category_id'] != $aItem['catId'] ) {
+/*                if( $result==1 && $old_item['fk_i_category_id'] != $aItem['catId'] ) {
                     $_category = Category::newInstance()->findByPrimaryKey($aItem['catId']);
                     // update dt_expiration
                     $i_expiration_days = $_category['i_expiration_days'];
                     $dt_expiration = Item::newInstance()->updateExpirationDate($aItem['idItem'], $i_expiration_days);
                     $newIsExpired = osc_isExpired($dt_expiration);
                 }
+ */
 
                 // Recalculate stats related with items
                 $this->_updateStats($result, $old_item, $oldIsExpired, $old_item_location, $aItem, $newIsExpired, $location);
@@ -1105,6 +1114,7 @@
             $aItem['description']   = Params::getParam('description');
             $aItem['contactPhone']  = Params::getParam('contactPhone');
             $aItem['expiry']        = Params::getParam('expiry');
+            $aItem['updateExpiry']  = Params::getParam('updateExpiry');
             $aItem['photos']        = Params::getFiles('photos');
             $aItem['s_ip']          = get_ip();
 
@@ -1187,10 +1197,6 @@
 
             if( $aItem['currency'] == '' ) {
                 $aItem['currency'] = null;
-            }
-
-            if ($aItem['expiryUnits'] == '') {
-                $aItem['expiryUnits'] = "day(s)";
             }
 
             $this->data = $aItem;

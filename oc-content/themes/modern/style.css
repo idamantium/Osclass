@@ -663,3 +663,10 @@ div.uploader input { opacity: 0; filter: alpha(opacity:0); position: absolute; t
     width: 100%;
 }
 
+#expiryUpdate {
+    width: 20px;
+}
+
+#expiry:disabled {
+    background: #dddddd;
+}

@@ -85,6 +85,21 @@
                     <?php }; ?>
                     $("#price").attr("value", price);
                 });
+
+                if (!$("#expiryUpdate").is(":checked")) {
+                    $("#expiry").attr('disabled', 'disabled');
+                    $("#uniform-expiry").css({'backgroundColor':"#DDDDDD"});
+                }
+
+                $("#expiryUpdate").click(function() {
+                    if ($(this).is(':checked')) {
+                        $("#expiry").removeAttr('disabled');
+                        $("#uniform-expiry").css({'backgroundColor':"#FFFFFF"});
+                    } else {
+                        $("#expiry").attr('disabled', 'disabled');
+                        $("#uniform-expiry").css({'backgroundColor':"#DDDDDD"});
+                    }
+                });
             });
             <?php }; ?>
         </script>
@@ -184,8 +199,20 @@
 */ ?>
                     </div>
 
-
-
+                    <div class="box expiry">
+                        <h2><?php _e("Post expiry", 'modern'); ?></h2>
+                        <div class="row">
+                        <p>Your listing expires at <b><? echo osc_format_date(osc_item_dt_expiration(), 'Y-m-d H:i:s') ?></b></p>
+                        </div>
+                        <div class="row">
+                            <label for="expiryUpdate"><?php _e('Update expiry?', 'modern'); ?></label>
+                            <?php ItemForm::update_expiry_checkbox(); ?>
+                        </div>
+                        <div class="row">
+                            <label for="expiry"><?php _e('Expiry', 'modern'); ?></label>
+                            <?php ItemForm::expiry_select(2*24*60*60); ?>
+                        </div>
+                    </div>
 
                         <?php ItemForm::plugin_edit_item(); ?>
                         <?php if( osc_recaptcha_items_enabled() ) {?>

@@ -487,6 +487,11 @@
             return true;
         }
 
+        static public function update_expiry_checkbox() {
+            parent::generic_input_checkbox('expiryUpdate', '1', false );
+            return true;
+        }
+
         // NOTHING TO DO
         static public function user_data_hidden() {
             if(isset($_SESSION['userId']) && $_SESSION['userId']!=null) {
