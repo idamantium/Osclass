@@ -311,6 +311,7 @@
                 ((!osc_validate_number($aItem['price'])) ? _m("Price must be a number.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['price'], 15)) ? _m("Price too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_text($aItem['countryName'], 3, false)) ? _m("Country too short.") . PHP_EOL : '' ) .
+                ((!osc_validate_email($aItem['contactEmail'])) ? _m("Email invalid.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['countryName'], 50)) ? _m("Country too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_text($aItem['regionName'], 3, false)) ? _m("Region too short.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['regionName'], 50)) ? _m("Region too long.") . PHP_EOL : '' ) .
@@ -368,7 +369,7 @@
                     $user = User::newInstance()->findByPrimaryKey( $aItem['userId'] );
                     $aItem['userId']      = $aItem['userId'];
                     $aItem['contactName'] = $user['s_name'];
-                    $aItem['contactEmail'] = $user['s_email'];
+//                    $aItem['contactEmail'] = $user['s_email'];
                 } else {
                     $aItem['userId']      = NULL;
                 }
@@ -379,12 +380,16 @@
                     $aItem['currency'] = NULL;
                 }
 
+                error_log(implode("|", $aItem));
+
                 $aUpdate = array(
                     'dt_mod_date'         => date('Y-m-d H:i:s')
                     ,'fk_i_category_id'   => $aItem['catId']
                     ,'i_price'            => $aItem['price']
                     ,'fk_c_currency_code' => $aItem['currency']
                     ,'s_ip'               => $aItem['s_ip']
+                    ,'s_contact_email'    => $aItem['contactEmail']
+                    ,'s_contact_phone'    => $aItem['contactPhone']
                 );
 
                 // only can change the user if you're an admin

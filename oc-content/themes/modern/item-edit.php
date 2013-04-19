@@ -160,6 +160,33 @@
                         </div>
                         
                     </div>
+
+                    <div class="box seller_info">
+                        <h2><?php _e("Your information", 'modern'); ?></h2>
+                        <div class="row">
+                            <label for="contactEmail"><?php _e('E-mail', 'modern'); ?></label>
+                            <?php ItemForm::contact_email_text(NULL, $field_email); ?>
+                        </div>
+                        <div class="row">
+                            <label for="contactPhone"><?php _e('Phone', 'modern'); ?></label>
+                            <?php ItemForm::contact_phone_text(NULL, $field_phone); ?>
+                        </div>
+                        <div class="row">
+                            <button id="clearContact" type="button">Clear contact information</button>
+                        </div>
+<?php /*
+                        <div class="row">
+                            <div style="width: 120px;text-align: right;float:left;">
+                                <?php ItemForm::show_email_checkbox(); ?>
+                            </div>
+                            <label for="showEmail" style="width: 250px;"><?php _e('Show e-mail on the listing page', 'modern'); ?></label>
+                        </div>
+*/ ?>
+                    </div>
+
+
+
+
                         <?php ItemForm::plugin_edit_item(); ?>
                         <?php if( osc_recaptcha_items_enabled() ) {?>
                         <div class="box">
