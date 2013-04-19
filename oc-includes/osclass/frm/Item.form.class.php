@@ -470,19 +470,20 @@
             return true;
         }
 
-        static public function expiry_value_text($defaultValue = null) {
-            if (isset($defaultValue)) {
-                $fieldValue = $defaultValue;
-            }
-            parent::generic_input_text('expiryValue', $fieldValue);
-            return true;
-        }
-        static public function expiry_units_select($defaultValue = null) {
-            $units = array(
-                array("id" => "hour(s)"),
-                array("id" => "day(s)"),
-                array("id" => "week(s)"));
-            parent::generic_select('expiryUnits', $units, 'id', 'id', __('Select a timeframe...'), isset($defaultValue) ? $defaultValue : null);
+        static public function expiry_select($defaultValue = null) {
+            $expiryOptions = array(
+                array("timeTag" => "15 minutes", "timeSeconds" => 15*60),
+                array("timeTag" => "30 minutes", "timeSeconds" => 30*60),
+                array("timeTag" => "1 hour",     "timeSeconds" => 1*60*60),
+                array("timeTag" => "2 hours",    "timeSeconds" => 2*60*60),
+                array("timeTag" => "4 hours",    "timeSeconds" => 4*60*60),
+                array("timeTag" => "8 hours",    "timeSeconds" => 8*60*60),
+                array("timeTag" => "1 day",      "timeSeconds" => 1*24*60*60),
+                array("timeTag" => "2 days",     "timeSeconds" => 2*24*60*60),
+                array("timeTag" => "5 days",     "timeSeconds" => 5*24*60*60),
+                array("timeTag" => "1 week",     "timeSeconds" => 1*7*24*60*60),
+            );
+            parent::generic_select('expiry', $expiryOptions, 'timeSeconds', 'timeTag', __('Select a timeframe...'), isset($defaultValue) ? $defaultValue : null);
             return true;
         }
 

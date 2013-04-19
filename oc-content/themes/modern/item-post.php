@@ -215,8 +215,7 @@
                         <h2><?php _e("Post expiry", 'modern'); ?></h2>
                         <div class="row">
                             <label for="expiryValue"><?php _e('Expiry', 'modern'); ?></label>
-                            <?php ItemForm::expiry_value_text(1); ?>
-                            <?php ItemForm::expiry_units_select('week(s)'); ?>
+                            <?php ItemForm::expiry_select(2*24*60*60); ?>
                         </div>
                     </div>
                     <?php /*};*/ ?>
