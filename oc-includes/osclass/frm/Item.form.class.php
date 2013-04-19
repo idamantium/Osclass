@@ -469,6 +469,23 @@
             parent::generic_input_text('contactPhone', $fieldValue);
             return true;
         }
+
+        static public function expiry_value_text($defaultValue = null) {
+            if (isset($defaultValue)) {
+                $fieldValue = $defaultValue;
+            }
+            parent::generic_input_text('expiryValue', $fieldValue);
+            return true;
+        }
+        static public function expiry_units_select($defaultValue = null) {
+            $units = array(
+                array("id" => "hour(s)"),
+                array("id" => "day(s)"),
+                array("id" => "week(s)"));
+            parent::generic_select('expiryUnits', $units, 'id', 'id', __('Select a timeframe...'), isset($defaultValue) ? $defaultValue : null);
+            return true;
+        }
+
         // NOTHING TO DO
         static public function user_data_hidden() {
             if(isset($_SESSION['userId']) && $_SESSION['userId']!=null) {

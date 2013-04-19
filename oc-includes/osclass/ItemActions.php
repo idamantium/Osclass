@@ -56,6 +56,9 @@
             $aItem['cityArea'] = osc_sanitize_name( strip_tags( trim( $aItem['cityArea'] ) ) );
             $aItem['address']  = osc_sanitize_name( strip_tags( trim( $aItem['address'] ) ) );
 
+            $expiryValue       = strip_tags( trim( $aItem['expiryValue'] ) );
+            $expiryUnits       = strip_tags( trim( $aItem['expiryUnits'] ) );
+
             // Anonymous
             $contactName = (osc_validate_text($contactName,3))? $contactName : __("Anonymous");
 
@@ -96,6 +99,7 @@
             $flash_error .=
                 ((!osc_validate_category($aItem['catId'])) ? _m("Category invalid.") . PHP_EOL : '' ) .
                 ((!osc_validate_number($aItem['price'])) ? _m("Price must be a number.") . PHP_EOL : '' ) .
+                ((!osc_validate_number($aItem['expiryValue'])) ? _m("Expiry value must be a number.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['price'], 15)) ? _m("Price too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($contactName, 35)) ? _m("Name too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_email($contactEmail)) ? _m("Email invalid.") . PHP_EOL : '' ) .
@@ -141,9 +145,26 @@
                     $aItem['currency'] = NULL;
                 }
 
+                // Calculate the expiry of the listing
+                $expiry = new DateTime('NOW');
+                switch ($expiryUnits) {
+                case "hour(s)":
+                    $expiry->add(new DateInterval("PT{$expiryValue}H"));
+                    break;
+                case "week(s)":
+                    $expiryValue *= 7;
+                    $expiry->add(new DateInterval("P{$expiryValue}D"));
+                    break;
+                default:
+                case "day(s)":
+                    $expiry->add(new DateInterval("P{$expiryValue}D"));
+                    break;
+                }
+
                 $this->manager->insert(array(
                     'fk_i_user_id'          => $aItem['userId'],
                     'dt_pub_date'           => date('Y-m-d H:i:s'),
+                    'dt_expiration'         => $expiry->format('Y-m-d H:i:s'),
                     'fk_i_category_id'      => $aItem['catId'],
                     'i_price'               => $aItem['price'],
                     'fk_c_currency_code'    => $aItem['currency'],
@@ -196,11 +217,12 @@
 
                 $this->uploadItemResources( $aItem['photos'] , $itemId);
 
-                // update dt_expiration at t_item
+/*                // update dt_expiration at t_item
                 $_category = Category::newInstance()->findByPrimaryKey($aItem['catId']);
                 // update dt_expiration
                 $i_expiration_days = $_category['i_expiration_days'];
                 $dt_expiration = Item::newInstance()->updateExpirationDate($itemId, $i_expiration_days);
+ */
 
                 /**
                  * META FIELDS
@@ -1090,6 +1112,8 @@
             $aItem['title']         = Params::getParam('title');
             $aItem['description']   = Params::getParam('description');
             $aItem['contactPhone']  = Params::getParam('contactPhone');
+            $aItem['expiryValue']   = Params::getParam('expiryValue');
+            $aItem['expiryUnits']   = Params::getParam('expiryUnits');
             $aItem['photos']        = Params::getFiles('photos');
             $aItem['s_ip']          = get_ip();
 
@@ -1172,6 +1196,10 @@
 
             if( $aItem['currency'] == '' ) {
                 $aItem['currency'] = null;
+            }
+
+            if ($aItem['expiryUnits'] == '') {
+                $aItem['expiryUnits'] = "day(s)";
             }
 
             $this->data = $aItem;

@@ -210,6 +210,15 @@
                         </div>
 */ ?>
                     </div>
+
+                    <div class="box expiry">
+                        <h2><?php _e("Post expiry", 'modern'); ?></h2>
+                        <div class="row">
+                            <label for="expiryValue"><?php _e('Expiry', 'modern'); ?></label>
+                            <?php ItemForm::expiry_value_text(1); ?>
+                            <?php ItemForm::expiry_units_select('week(s)'); ?>
+                        </div>
+                    </div>
                     <?php /*};*/ ?>
                     <?php ItemForm::plugin_post_item(); ?>
                     <?php if( osc_recaptcha_items_enabled() ) {?>

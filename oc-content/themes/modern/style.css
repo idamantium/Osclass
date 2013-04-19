@@ -664,3 +664,15 @@ div.uploader input { opacity: 0; filter: alpha(opacity:0); position: absolute; t
 }
 
 
+#expiryValue {
+    width: 200px;
+}
+
+#expiryUnits, #uniform-expiryUnits {
+    width: 200px;
+    min-width: 200px;
+}
+
+#uniform-expiryUnits span {
+    width: 169px;
+}
