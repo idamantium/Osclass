@@ -747,7 +747,8 @@
          */
         public function updateExpiration($pk_i_id, $expiration)
         {
-            $itemManager = Item::newInstance();
+            // Function disabled, global expirations no longer in effect
+/*            $itemManager = Item::newInstance();
 
             $this->dao->select('pk_i_id');
             $this->dao->from(DB_TABLE_PREFIX.'t_item');
@@ -761,7 +762,7 @@
                 $itemManager->updateExpirationDate($item['pk_i_id'], $expiration);
             }
             return $this->dao->update($this->tableName, array('i_expiration_days' => $expiration), array('pk_i_id'  => $pk_i_id));
-
+ */
         }
 
         /**
