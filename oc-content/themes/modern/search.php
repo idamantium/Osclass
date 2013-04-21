@@ -307,7 +307,7 @@
                         ?>
                         <button type="submit"><?php _e('Apply', 'modern'); ?></button>
                     </form>
-                    <?php osc_alert_form(); ?>
+                    <?php //osc_alert_form(); ?>
                 </div>
             </div>
             <script type="text/javascript">
