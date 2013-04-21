@@ -30,4 +30,6 @@ define("LDAP_PEOPLE_DOMAIN", "ou=people, dc=domain, dc=com");
 define("LDAP_ADMIN_DOMAIN", "cn=admin, dc=com");
 
 define("OUTERNET_PROFILE_PAGE_URL", "http://localhost/outernet-profile/login.php");
+
+define("OUTERNET_INTERNET_EMAIL", "your@email.com");
 ?>
