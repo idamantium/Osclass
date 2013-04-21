@@ -137,13 +137,13 @@
                 <p>Update your profile at the <a href="<? echo OUTERNET_PROFILE_PAGE_URL; ?>">Outernet profile page</a>.</p>
             </div>
         </div>
-        <div id="dialog-delete-account" title="<?php _e('Delete account', 'modern'); ?>" class="has-form-actions hide">
+<!--        <div id="dialog-delete-account" title="<?php _e('Delete account', 'modern'); ?>" class="has-form-actions hide">
             <div class="form-horizontal">
                 <div class="form-row">
                     <p><?php _e('All your listings and alerts will be removed, this action can not be undone.', 'modern');?></p>
                 </div>
             </div>
-        </div>
+        </div>-->
         <?php osc_current_web_theme_path('footer.php'); ?>
     </body>
 </html>
