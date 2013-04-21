@@ -76,7 +76,7 @@
                     <?php } ?>
                </div>
                <div class="latest_ads">
-                    <h1><strong><?php _e('Latest Listings', 'modern'); ?></strong></h1>
+                    <h1><strong><?php _e('Latest Listings', 'modern'); ?></strong></h1> 
                     <?php if( osc_count_latest_items() == 0) { ?>
                         <p class="empty"><?php _e('No Latest Listings', 'modern'); ?></p>
                     <?php } else { ?>
@@ -97,8 +97,9 @@
                                          </td>
                                         <?php } ?>
                                          <td class="text">
-                                             <h3><a href="<?php echo osc_item_url(); ?>"><?php echo osc_item_title(); ?></a></h3>
-                                             <p><strong><?php if( osc_price_enabled_at_items() ) { echo osc_item_formated_price(); ?> - <?php } echo osc_item_city(); ?> (<?php echo osc_item_region();?>) - <?php echo osc_format_date(osc_item_pub_date()); ?></strong></p>
+                                             <h3><a href="<?php echo osc_item_url(); ?>"><?php echo osc_item_title(); ?></a> (<?php echo osc_item_category(); ?>)</h3>
+                                             <p><strong><?php if( osc_price_enabled_at_items() ) { echo osc_item_formated_price(); ?> - <?php } echo osc_item_country(); ?> - <?php echo osc_item_region();?> </p></strong>
+                                             <p>Posted by <strong><?php echo osc_item_contact_name(); ?></strong> on <?php echo osc_format_date(osc_item_pub_date()); ?></p>
                                              <p><?php echo osc_highlight( strip_tags( osc_item_description() ) ); ?></p>
                                          </td>
                                      </tr>
@@ -119,9 +120,16 @@
                     <div class="box location">
                         <h3><strong><?php _e("Location", 'modern'); ?></strong></h3>
                         <ul>
-                        <?php while(osc_has_list_regions() ) { ?>
+
+                            <?php while(osc_has_list_countries() ) { ?>
+                        
+                            <li><a href="<?php echo osc_list_country_url(); ?>"><?php echo osc_list_country_name(); ?></a> <em>(<?php echo osc_list_country_items(); ?>)</em></li>
+                        <!-- IB   <?php while(osc_has_list_regions() ) { ?>
+
                             <li><a href="<?php echo osc_list_region_url(); ?>"><?php echo osc_list_region_name(); ?></a> <em>(<?php echo osc_list_region_items(); ?>)</em></li>
+                        <?php } ?> -->
                         <?php } ?>
+                        
                         </ul>
                     </div>
                     <?php } ?>
