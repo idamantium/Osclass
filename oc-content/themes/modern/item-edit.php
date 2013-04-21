@@ -149,7 +149,8 @@
                         <?php } ?>
 
 <!-- Listing Location Entry -->
-                    <div class="box location">
+                     <div class="box location">
+                    <div class="location-section-one">
                         <h2><?php _e('Listing Location', 'modern'); ?></h2>
                       <div class="row">
                            <label for="countryId"><?php _e('Neighborhood', 'modern'); ?></label>
@@ -173,7 +174,15 @@
                             <label for="city">So, where exactly?<?php //_e('City Area', 'modern'); ?></label>
                             <?php ItemForm::city_area_text(osc_user()); ?>
                         </div>
+                    </div>
                         
+
+
+                    <div class="location-section-two">
+
+                        <img src="<?php echo osc_current_web_theme_url('images/OuternetMap.jpg'); ?>">
+                    </div>
+
                     </div>
 
                     <div class="box seller_info">
