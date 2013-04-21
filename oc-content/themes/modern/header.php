@@ -38,7 +38,7 @@
                         <a id="login_open" href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', 'modern'); ?></a>
                         <?php if(osc_user_registration_enabled()) { ?>
                             &middot;
-                            <a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', 'modern'); ?></a>
+                            <a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register', 'modern'); ?></a>
                         <?php }; ?>
                         <form id="login" action="<?php echo osc_base_url(true); ?>" method="post">
                             <fieldset>

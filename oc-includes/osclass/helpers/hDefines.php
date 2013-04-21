@@ -377,11 +377,13 @@
      * @return string
      */
     function osc_register_account_url() {
-        if ( osc_rewrite_enabled() ) {
+/*        if ( osc_rewrite_enabled() ) {
             $path = osc_base_url() . osc_get_preference('rewrite_user_register');
         } else {
             $path = osc_base_url(true) . '?page=register&action=register';
         }
+ */
+        $path = OUTERNET_REGISTER_URL;
         return $path;
     }
 
