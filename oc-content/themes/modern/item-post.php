@@ -159,14 +159,6 @@
                             <label for="city">So, where exactly?<?php //_e('City Area', 'modern'); ?></label>
                             <?php ItemForm::city_area_text(osc_user()); ?>
                         </div>
-                    </div>
-
-                    <div class="location-section-two">
-
-                        <img src="<?php echo osc_current_web_theme_url('images/OuternetMap.jpg'); ?>">
-                    </div>
-                        
-                    </div>
 
 
 <!-- seller info -->
@@ -201,6 +193,7 @@
                         <div class="row">
                             <button id="clearContact" type="button">Clear contact information</button>
                         </div>
+                    </div>
 <?php /*
                         <div class="row">
                             <div style="width: 120px;text-align: right;float:left;">
@@ -209,15 +202,15 @@
                             <label for="showEmail" style="width: 250px;"><?php _e('Show e-mail on the listing page', 'modern'); ?></label>
                         </div>
 */ ?>
-                    </div>
 
                     <div class="box expiry">
                         <h2><?php _e("Post expiry", 'modern'); ?></h2>
                         <div class="row">
                             <label for="expiry"><?php _e('Expiry', 'modern'); ?></label>
                             <?php ItemForm::expiry_select(2*24*60*60); ?>
-                        </div>
-                    </div>
+                        </div> 
+
+                               </div>
                     <?php /*};*/ ?>
                     <?php ItemForm::plugin_post_item(); ?>
                     <?php if( osc_recaptcha_items_enabled() ) {?>
@@ -228,7 +221,21 @@
                     </div>
                     <?php }?>
                 <div class="clear"></div>
-                <button  type="submit"><?php _e('Publish', 'modern'); ?></button>
+                <button  type="submit"><?php _e('Publish', 'modern'); ?></button> 
+                    </div>
+
+                    <div class="location-section-two">
+
+                        <img src="<?php echo osc_current_web_theme_url('images/OuternetMap.jpg'); ?>">
+                    </div>
+                        
+                    </div>
+
+                    </div>
+
+
+
+             
                 </fieldset>
             </form>
         </div>
