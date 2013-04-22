@@ -208,7 +208,7 @@
                         </p>
                         <p class="contact_button">
                             <strong><a href="<?php echo osc_user_login_url(); ?>"><?php _e('Login', 'modern'); ?></a></strong>
-                            <strong><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register for a free account', 'modern'); ?></a></strong>
+                            <strong><a href="<?php echo osc_register_account_url(); ?>"><?php _e('Register', 'modern'); ?></a></strong>
                         </p>
                     <?php } else { ?>
                         <?php /*if( osc_item_user_id() != null ) { ?>

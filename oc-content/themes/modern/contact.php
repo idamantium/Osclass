@@ -48,6 +48,7 @@
                         <?php osc_run_hook('admin_contact_form'); ?>
                     </fieldset>
                 </form>
+                <p style="padding-top: 10px;">Or, if you'd like, contact us on the real Internet! <a href="<?php echo OUTERNET_INTERNET_EMAIL; ?>"><?php echo OUTERNET_INTERNET_EMAIL; ?></a></p>
             </div>
         </div>
         <?php ContactForm::js_validation(); ?>
