@@ -27,6 +27,19 @@
     * @author Osclass
     */
 
+
+    /**
+    * Get expiration date
+    **/
+
+    function osc_expiry() {
+        if (View::newInstance()->_exists('countries')) {
+            return View::newInstance()->_current('countries');
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Gets current country
      *

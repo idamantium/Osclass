@@ -79,7 +79,17 @@
             <div id="main">
                 <div id="type_dates">
                     <strong><?php echo osc_item_category(); ?></strong>
-                    <em class="publish"><?php if ( osc_item_pub_date() != '' ) echo __('Published date', 'modern') . ': ' . osc_format_date( osc_item_pub_date() ); ?></em>
+
+                    <em>
+
+                          <?php if (osc_item_dt_expiration() != '9999-12-31 23:59:59' )  echo __('Expires on', 'modern') . ': ' . osc_format_date( osc_item_dt_expiration() ); ?>
+                          <?php if (osc_item_dt_expiration() === '9999-12-31 23:59:59' )  echo __('Post never expires', 'modern'); ?>
+                    </em>
+
+                    <em class="publish">
+
+
+                        <?php if ( osc_item_pub_date() != '' ) echo __('Published on', 'modern') . ': ' . osc_format_date( osc_item_pub_date() ); ?></em>
                     <em class="update"><?php if ( osc_item_mod_date() != '' ) echo __('Modified date', 'modern') . ': ' . osc_format_date( osc_item_mod_date() ); ?></em>
                 </div>
                 <ul id="item_location">
