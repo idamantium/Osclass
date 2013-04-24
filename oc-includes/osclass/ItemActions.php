@@ -884,12 +884,12 @@
 
             Params::setParam('itemURL', $itemURL);
 
-            if( !preg_match('|^.*?@.{2,}\..{2,3}$|', $authorEmail)) {
+/*            if( !preg_match('|^.*?@.{2,}\..{2,3}$|', $authorEmail)) {
                 Session::newInstance()->_setForm('commentAuthorName', $authorName);
                 Session::newInstance()->_setForm('commentTitle', $title);
                 Session::newInstance()->_setForm('commentBody', $body);
                 return 3;
-            }
+}*/
 
             if( ($body == '') ) {
                 Session::newInstance()->_setForm('commentAuthorName', $authorName);
