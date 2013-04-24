@@ -122,6 +122,10 @@
         return View::newInstance()->_get('search_region');
     }
 
+    function osc_search_country() {
+        return View::newInstance()->_get('search_country');
+    }
+
     /**
      * Gets current search city
      *

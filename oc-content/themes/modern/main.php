@@ -98,7 +98,7 @@
                                         <?php } ?>
                                          <td class="text">
                                              <h3><a href="<?php echo osc_item_url(); ?>"><?php echo osc_item_title(); ?></a> (<?php echo osc_item_category(); ?>)</h3>
-                                             <p><strong><?php if( osc_price_enabled_at_items() ) { echo osc_item_formated_price(); ?> - <?php } echo osc_item_country(); ?> - <?php echo osc_item_region();?> </p></strong>
+                                             <p><strong><?php if( osc_price_enabled_at_items() ) { echo osc_item_formated_price(); ?> - <?php } echo osc_item_country(); ?></strong> near <?php echo osc_item_region();?> </p>
                                              <p>Posted by <strong><?php echo osc_item_contact_name(); ?></strong> on <?php echo osc_format_date(osc_item_pub_date()); ?></p>
                                              <p><?php echo osc_highlight( strip_tags( osc_item_description() ) ); ?></p>
                                          </td>

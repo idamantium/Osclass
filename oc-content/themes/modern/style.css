@@ -12,9 +12,9 @@ input:focus { outline:none; }
 
 body {
 
-     background-color: #E9D1BE;
+     background-color: #ECF1D5;
     
-    color: #0D1F26;
+    color: #0B0604;
 }
 
 /* -- ERROR PAGES --------------------------------------- */
@@ -23,8 +23,8 @@ body {
 
 /* -- GLOBAL STYLES --------------------------------------- */
 body { line-height:1; color:#333; font: 12px Arial, Helvetica, Verdana, sans-serif; }
-a { color:#069; text-decoration:underline; }
-a:hover { color:#F80; }
+a { color:#069; text-decoration:none; }
+a:hover {color:#BF409F; text-decoration: underline;}
 option.pad { margin-left:10px;}
 .empty { clear:both; color:#993300; float:left; padding:15px; width:100%; }
 .clear { clear:both; }
@@ -134,7 +134,7 @@ ul.breadcrumb li { float: left; padding: 0 2px; }
 .form_publish .search { float:left; width:960px; }
 .form_publish .search #expand_advanced { font-size:11px; margin-left:10px;}
 .form_publish .search .extras { display:none; }
-.form_publish .publish_button { background:#ec4901 url(images/button_link_bg.gif) repeat-x top; border:1px solid #c54f00; float:right; margin:9px 10px 0 0; padding:6px 10px 7px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; }
+.form_publish .publish_button { background:#BF409F; url(images/button_link_bg.gif) repeat-x top; border:1px solid #56584c; float:right; margin:9px 10px 0 0; padding:6px 10px 7px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; }
 .form_publish .margin-bottom { margin-bottom: 10px; margin-top: 0px; }
 .form_publish .publish_button a { background:url(images/button_link_icon.gif) no-repeat 0 2px; color:#FFF; float:left; padding-left:15px; text-decoration:none; }
 .form_publish .publish_button a:hover { text-decoration: underline;}
@@ -157,13 +157,13 @@ ul.breadcrumb li { float: left; padding: 0 2px; }
 .home #main .categories.c1 .category li { float:left; margin-right:17px; width:330px; }
 .home #main .categories .category { margin-bottom:15px; }
 .home #main .categories .category h1 { margin-bottom:5px; }
-.home #main .categories .category h1 span { color:#CCC; }
-.home #main .categories .category li { border-bottom:1px dotted #DDD; color:#CCC; font-size:11px; padding:5px 0; }
+.home #main .categories .category h1 span { color:#22674E; }
+.home #main .categories .category li { border-bottom:1px dotted #DDD; color:#22674E; font-size:11px; padding:5px 0; }
 .home #main .latest_ads { padding-left:10px; clear:both; }
 .home #main .latest_ads table { clear:both; width:100%; }
 .home #main .latest_ads table td { border-bottom:1px dotted #dddddd; padding:8px; vertical-align:top; }
 .home #main .latest_ads table tr.odd td { background:#f8f8f8; }
-.home #main .latest_ads table tr:hover td { background:#fefbea; }
+.home #main .latest_ads table tr:hover td { background:#F0FAF9; }
 .home #main .latest_ads table td.photo { padding-left:2px; }
 .home #main .latest_ads table td.photo img { background:#FFF; border:1px solid #DDD; padding:1px; }
 .home #main .latest_ads table td.text h3 { font-size:14px; font-weight:normal; margin-bottom: 4px; }
@@ -186,7 +186,7 @@ ul.breadcrumb li { float: left; padding: 0 2px; }
 .home .navigation h3 strong { font-weight:normal; }
 .home .navigation ul { font-size:11px; margin-bottom:15px; }
 .home .navigation ul li { padding:3px 0 3px 10px; }
-.home .navigation ul li em { color:#999; font-style:normal; }
+.home .navigation ul li em { color:#22674E; font-style:normal; }
 
 /* -- AD LISTINGS --------------------------------------- */
 .list #main { float:right; padding-top:18px; width:690px; }
