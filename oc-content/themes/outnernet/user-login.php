@@ -28,8 +28,9 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
+        <div class="row blurb shadow">
         <div class="content user_forms">
-            <div class="inner">
+            
                 <h1><?php _e('Access to your account', 'modern'); ?></h1>
                 <form action="<?php echo osc_base_url(true); ?>" method="post" >
                     <input type="hidden" name="page" value="login" />
@@ -44,8 +45,9 @@
                         </div>
                     </fieldset>
                 </form>
-            </div>
+           
         </div>
+    </div>
         <?php osc_current_web_theme_path('footer.php'); ?>
     </body>
 </html>

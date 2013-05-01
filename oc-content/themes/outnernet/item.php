@@ -1,23 +1,4 @@
 <?php
-    /*
-     *      Osclass – software for creating and publishing online classified
-     *                           advertising platforms
-     *
-     *                        Copyright (C) 2012 OSCLASS
-     *
-     *       This program is free software: you can redistribute it and/or
-     *     modify it under the terms of the GNU Affero General Public License
-     *     as published by the Free Software Foundation, either version 3 of
-     *            the License, or (at your option) any later version.
-     *
-     *     This program is distributed in the hope that it will be useful, but
-     *         WITHOUT ANY WARRANTY; without even the implied warranty of
-     *        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     *             GNU Affero General Public License for more details.
-     *
-     *      You should have received a copy of the GNU Affero General Public
-     * License along with this program.  If not, see <http://www.gnu.org/licenses/>.
-     */
 
     osc_register_script('fancybox', osc_current_web_theme_js_url('fancybox/jquery.fancybox.js'), array('jquery'));
 
@@ -52,9 +33,9 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
-        <div class="content item">
-            <div id="item_head">
-                <div class="inner">
+     <div class="row">
+        <div class="content item shadow blurb">
+            <div id="item_head large-12 columns">
                     <h1><?php if( osc_price_enabled_at_items() ) { ?><span class="price"><?php echo osc_item_formated_price(); ?></span> <?php } ?><strong><?php echo osc_item_title() . ' ' . osc_item_city(); ?></strong></h1>
                     <?php if(osc_is_web_user_logged_in() && osc_logged_user_id()==osc_item_user_id()) { ?>
                         <p id="edit_item_view">
@@ -74,9 +55,9 @@
                             </span>
                         </p>
                     <?php }; ?>
-                </div>
+              
             </div>
-            <div id="main">
+            <div class="row" id="main">
                 <div id="type_dates">
                     <strong><?php echo osc_item_category(); ?></strong>
 
@@ -268,6 +249,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <?php osc_current_web_theme_path('footer.php'); ?>
     </body>
 </html>

@@ -18,14 +18,32 @@
 
         <div class="content home">
             <div class="row" id="main">
-                <?php
-                    $total_categories   = osc_count_categories();
-                    $col1_max_cat       = ceil($total_categories/3);
-                    $col2_max_cat       = ceil(($total_categories-$col1_max_cat)/2);
-                    $col3_max_cat       = $total_categories-($col1_max_cat+$col2_max_cat);
-                ?>
-                <div class="categories shadow blurb">
-                  
+
+            <div class="large-2 columns shadow blurb navigation" >
+             
+                    <?php if(osc_count_list_regions() > 0 ) { ?>
+                    <div class="box location">
+                        <h3><strong><?php _e("Location", 'modern'); ?></strong></h3>
+                        <ul>
+
+                            <?php while(osc_has_list_countries() ) { ?>
+                        
+                            <li><a href="<?php echo osc_list_country_url(); ?>"><?php echo osc_list_country_name(); ?></a> <em>(<?php echo osc_list_country_items(); ?>)</em></li>
+                        <!-- IB   <?php while(osc_has_list_regions() ) { ?>
+
+                            <li><a href="<?php echo osc_list_region_url(); ?>"><?php echo osc_list_region_name(); ?></a> <em>(<?php echo osc_list_region_items(); ?>)</em></li>
+                        <?php } ?> -->
+                        <?php } ?>
+                        
+                        </ul>
+                    </div>
+                    <?php } ?>
+              
+                </div>
+
+
+                <div class="large-10 columns shadow blurb">
+                  <div class="categories ">
                     <?php while ( osc_has_categories() ) { ?>
                         <div class="category large-4 columns clearfix">
                             <h1><strong><a class="category cat_<?php echo osc_category_id(); ?>" href="<?php echo osc_search_category_url(); ?>"><?php echo osc_category_name(); ?></a> <span>(<?php echo osc_category_total_items(); ?>)</span></strong></h1>
@@ -51,7 +69,11 @@
                             $x++;
                         ?>
                     <?php } ?>
+                </div>
                </div>
+
+                
+
                <div class="latest_ads shadow blurb">
                     <h1><strong><?php _e('Latest Listings', 'modern'); ?></strong></h1> 
                     <?php if( osc_count_latest_items() == 0) { ?>
@@ -91,27 +113,7 @@
                     <?php View::newInstance()->_erase('items'); } ?>
                 </div>
             </div>
-            <div id="sidebar">
-                <div class="navigation">
-                    <?php if(osc_count_list_regions() > 0 ) { ?>
-                    <div class="box location">
-                        <h3><strong><?php _e("Location", 'modern'); ?></strong></h3>
-                        <ul>
-
-                            <?php while(osc_has_list_countries() ) { ?>
-                        
-                            <li><a href="<?php echo osc_list_country_url(); ?>"><?php echo osc_list_country_name(); ?></a> <em>(<?php echo osc_list_country_items(); ?>)</em></li>
-                        <!-- IB   <?php while(osc_has_list_regions() ) { ?>
-
-                            <li><a href="<?php echo osc_list_region_url(); ?>"><?php echo osc_list_region_name(); ?></a> <em>(<?php echo osc_list_region_items(); ?>)</em></li>
-                        <?php } ?> -->
-                        <?php } ?>
-                        
-                        </ul>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
+           
         </div>
         <?php osc_current_web_theme_path('footer.php'); ?>
     </body>

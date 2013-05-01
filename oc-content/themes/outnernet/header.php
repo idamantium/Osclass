@@ -1,9 +1,9 @@
 <?php
 
 ?>
-<!-- container -->
-<div class="shadow">
 <!-- header -->
+
+
 <div class="row shadow blurb" id="header">
     <div class="small-3 large-4 columns">
     <a id="logo" href="<?php echo osc_base_url(); ?>"><?php echo logo_header(); ?></a>
@@ -71,18 +71,25 @@
 
 <div class="clear"></div>
 <!-- /header -->
+
 <?php
     osc_show_widgets('header');
 
     $breadcrumb = osc_breadcrumb('&raquo;', false);
     if( $breadcrumb != '') { ?>
+    <div class="row">
+<div class="large-12 columns shadow blurb">
     <div class="breadcrumb">
         <?php echo $breadcrumb; ?>
         <div class="clear"></div>
     </div>
+    </div>
+</div>
 <?php
     }
 ?>
+</div>
 <div class="forcemessages-inline">
     <?php osc_show_flash_message(); ?>
-</div>
+
+
