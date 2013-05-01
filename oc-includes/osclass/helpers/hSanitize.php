@@ -59,7 +59,7 @@
      * @return string sanitized
      */
     function osc_sanitize_name($value) {
-        return ucwords( osc_sanitize_allcaps( trim( $value ) ) );
+        return  osc_sanitize_allcaps( trim( $value ) );
     }
 
 

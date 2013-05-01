@@ -95,6 +95,9 @@
             }
             $flash_error .= $desc_message;
 
+            error_log("neighborhood " . $aItem['countryName']);
+            error_log("near " . $aItem['regionName']);
+
             $flash_error .=
                 ((!osc_validate_category($aItem['catId'])) ? _m("Category invalid.") . PHP_EOL : '' ) .
                 ((!osc_validate_number($aItem['price'])) ? _m("Price must be a number.") . PHP_EOL : '' ) .
@@ -102,9 +105,9 @@
                 ((!osc_validate_max($aItem['price'], 15)) ? _m("Price too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($contactName, 35)) ? _m("Name too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_email($contactEmail)) ? _m("Email invalid.") . PHP_EOL : '' ) .
-                ((!osc_validate_text($aItem['countryName'], 3, false)) ? _m("Country too short.") . PHP_EOL : '' ) .
+                ((!osc_validate_text($aItem['countryName'], 3, true)) ? _m("Country too short.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['countryName'], 50)) ? _m("Country too long.") . PHP_EOL : '' ) .
-                ((!osc_validate_text($aItem['regionName'], 3, false)) ? _m("Region too short.") . PHP_EOL : '' ) .
+                ((!osc_validate_text($aItem['regionName'], 3, true)) ? _m("Region too short.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['regionName'], 50)) ? _m("Region too long.") . PHP_EOL : '' ) .
                 ((!osc_validate_text($aItem['cityName'], 3, false)) ? _m("City too short.") . PHP_EOL : '' ) .
                 ((!osc_validate_max($aItem['cityName'], 50)) ? _m("City too long.") . PHP_EOL : '' ) .
@@ -884,12 +887,12 @@
 
             Params::setParam('itemURL', $itemURL);
 
-            if( !preg_match('|^.*?@.{2,}\..{2,3}$|', $authorEmail)) {
+/*            if( !preg_match('|^.*?@.{2,}\..{2,3}$|', $authorEmail)) {
                 Session::newInstance()->_setForm('commentAuthorName', $authorName);
                 Session::newInstance()->_setForm('commentTitle', $title);
                 Session::newInstance()->_setForm('commentBody', $body);
                 return 3;
-            }
+}*/
 
             if( ($body == '') ) {
                 Session::newInstance()->_setForm('commentAuthorName', $authorName);

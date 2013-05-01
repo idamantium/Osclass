@@ -35,7 +35,7 @@
                     <input type="hidden" name="page" value="login" />
                     <input type="hidden" name="action" value="login_post" />
                     <fieldset>
-                        <label for="email"><?php _e('E-mail', 'modern'); ?></label> <?php UserForm::email_login_text(); ?><br />
+                        <label for="email"><?php _e('User name', 'modern'); ?></label> <?php UserForm::email_login_text(); ?><br />
                         <label for="password"><?php _e('Password', 'modern'); ?></label> <?php UserForm::password_login_text(); ?><br />
                         <p class="checkbox"><?php UserForm::rememberme_login_checkbox();?> <label for="rememberMe"><?php _e('Remember me', 'modern'); ?></label></p>
                         <button type="submit"><?php _e("Log in", 'modern');?></button>
