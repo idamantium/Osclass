@@ -17,7 +17,6 @@ oc-includes/osclass/t/config.php
 oc-content/debug*.log
 oc-content/queries.log
 oc-content/explain_queries.log
-oc-content/uploads/*
 
 oc-includes/osclass/t/config.php
 oc-content/plugins/lopd/admin_user.php
@@ -25,7 +24,6 @@ oc-content/plugins/lopd/ajax.php
 
 oc-inlcudes/simpletest/test/osclass/custom_config.php
 #themes
-oc-content/themes/*
 !oc-content/themes/modern/
 
 #plugins

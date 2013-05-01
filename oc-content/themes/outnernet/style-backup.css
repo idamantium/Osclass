@@ -28,10 +28,10 @@ a:hover {color:#BF409F; text-decoration: underline;}
 option.pad { margin-left:10px;}
 .empty { clear:both; color:#993300; float:left; padding:15px; width:100%; }
 .clear { clear:both; }
-.container { margin:0 auto; width:970px; }
+/*.container { margin:0 auto; width:970px; }
 .content { clear:both; float:left; margin-bottom:20px; width:960px; }
 .content.home { border-top:1px solid #BBB; }
-
+*/
 /* Flash message */
 .flashmessage,
 .flashmessage {
