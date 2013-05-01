@@ -43,8 +43,9 @@
 </script>
 
 <?php
-osc_enqueue_style('foundation-style', osc_current_web_theme_url('foundation.css'));
 osc_enqueue_style('normalize', osc_current_web_theme_url('normalize.css'));
+
+osc_enqueue_style('foundation-style', osc_current_web_theme_url('foundation.css'));
 osc_enqueue_style('style', osc_current_web_theme_url('style.css'));
 osc_enqueue_style('tabs', osc_current_web_theme_url('tabs.css'));
 

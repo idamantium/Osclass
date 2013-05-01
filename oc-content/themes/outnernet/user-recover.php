@@ -28,8 +28,9 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
-        <div class="content user_forms">
-            <div class="inner">
+        <div class="row blurb shadow">
+          <div class="content user_forms">
+
                 <h1><?php _e('Recover your password', 'modern'); ?></h1>
                 <form action="<?php echo osc_base_url(true); ?>" method="post" >
                     <input type="hidden" name="page" value="login" />

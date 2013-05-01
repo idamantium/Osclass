@@ -64,7 +64,7 @@
         <?php } ?>
         <div class="empty"></div>
     </div>
-</div>
+
 
 </div> <!-- end header div -->
 
@@ -78,18 +78,22 @@
     $breadcrumb = osc_breadcrumb('&raquo;', false);
     if( $breadcrumb != '') { ?>
     <div class="row">
-<div class="large-12 columns shadow blurb">
-    <div class="breadcrumb">
+<div class="large-12 columns ">
+    <ul class="breadcrumbs">
         <?php echo $breadcrumb; ?>
         <div class="clear"></div>
-    </div>
+    </ul>
     </div>
 </div>
 <?php
     }
 ?>
 </div>
-<div class="forcemessages-inline">
+</div>
+<div class="row">
+<div class="forcemessages-inline ">
     <?php osc_show_flash_message(); ?>
+</div>
+
 
 

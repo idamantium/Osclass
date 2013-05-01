@@ -32,7 +32,7 @@
         <?php UserForm::js_validation(); ?>
         <?php osc_current_web_theme_path('header.php'); ?>
         <div class="content user_forms">
-            <div class="inner">
+        <div class="row blurb shadow">
                 <h1><?php _e('Register an account for free', 'modern'); ?></h1>
                 <ul id="error_list"></ul>
                 <form name="register" id="register" action="<?php echo osc_base_url(true); ?>" method="post" >

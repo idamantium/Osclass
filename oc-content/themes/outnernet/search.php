@@ -164,53 +164,9 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
-        <div class="content list">
-            <div id="main">
-                <div class="ad_list">
-                    <div id="list_head">
-                        <div class="inner">
-                            <h1>
-                                <strong><?php echo search_title(); ?></strong>
-                            </h1>
-                            <p class="see_by">
-                                <?php _e('Sort by', 'modern'); ?>:
-                                <?php $i = 0; ?>
-                                <?php $orders = osc_list_orders();
-                                foreach($orders as $label => $params) {
-                                    $orderType = ($params['iOrderType'] == 'asc') ? '0' : '1'; ?>
-                                    <?php if(osc_search_order() == $params['sOrder'] && osc_search_order_type() == $orderType) { ?>
-                                        <a class="current" href="<?php echo osc_update_search_url($params); ?>"><?php echo $label; ?></a>
-                                    <?php } else { ?>
-                                        <a href="<?php echo osc_update_search_url($params); ?>"><?php echo $label; ?></a>
-                                    <?php } ?>
-                                    <?php if ($i != count($orders)-1) { ?>
-                                        <span>|</span>
-                                    <?php } ?>
-                                    <?php $i++; ?>
-                                <?php } ?>
-                            </p>
-                        </div>
-                    </div>
-                    <?php if(osc_count_items() == 0) { ?>
-                        <p class="empty" ><?php printf(__('There are no results matching "%s"', 'modern'), osc_search_pattern()); ?></p>
-                    <?php } else { ?>
-                        <?php require(osc_search_show_as() == 'list' ? 'search_list.php' : 'search_gallery.php'); ?>
-                        <div class="paginate" >
-                        <?php echo osc_search_pagination(); ?>
-                        </div>
-                    <?php } ?>
-                    <div class="clear"></div>
-                    <?php $footerLinks = osc_search_footer_links(); ?>
-                    <ul class="footer-links">
-                    <?php foreach($footerLinks as $f) { View::newInstance()->_exportVariableToView('footer_link', $f); ?>
-                        <?php if($f['total'] < 3) continue; ?>
-                        <li><a href="<?php echo osc_footer_link_url(); ?>"><?php echo osc_footer_link_title(); ?></a></li>
-                    <?php } ?>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            <div id="sidebar">
+        <div class="content list row">
+            
+            <div id="sidebar" class="large-4 columns blurb shadow">
                 <div class="filters">
                     <form action="<?php echo osc_base_url(true); ?>" method="get" onsubmit="return doSearch()" class="nocsrf">
                         <input type="hidden" name="page" value="search" />
@@ -297,6 +253,61 @@
                     <?php //osc_alert_form(); ?>
                 </div>
             </div>
+
+
+ <!-- END SIDEBAR -->
+
+
+            <div id="main" class="large-8 columns blurb shadow">
+                <div class="ad_list">
+                    <div id="list_head">
+                        <div class="inner">
+                            <h1>
+                                <strong><?php echo search_title(); ?></strong>
+                            </h1>
+                            <p class="see_by">
+                                <?php _e('Sort by', 'modern'); ?>:
+                                <?php $i = 0; ?>
+                                <?php $orders = osc_list_orders();
+                                foreach($orders as $label => $params) {
+                                    $orderType = ($params['iOrderType'] == 'asc') ? '0' : '1'; ?>
+                                    <?php if(osc_search_order() == $params['sOrder'] && osc_search_order_type() == $orderType) { ?>
+                                        <a class="current" href="<?php echo osc_update_search_url($params); ?>"><?php echo $label; ?></a>
+                                    <?php } else { ?>
+                                        <a href="<?php echo osc_update_search_url($params); ?>"><?php echo $label; ?></a>
+                                    <?php } ?>
+                                    <?php if ($i != count($orders)-1) { ?>
+                                        <span>|</span>
+                                    <?php } ?>
+                                    <?php $i++; ?>
+                                <?php } ?>
+                            </p>
+                        </div>
+                    </div>
+                    <?php if(osc_count_items() == 0) { ?>
+                        <p class="empty" ><?php printf(__('There are no results matching "%s"', 'modern'), osc_search_pattern()); ?></p>
+                    <?php } else { ?>
+                        <?php require(osc_search_show_as() == 'list' ? 'search_list.php' : 'search_gallery.php'); ?>
+                        <div class="paginate" >
+                        <?php echo osc_search_pagination(); ?>
+                        </div>
+                    <?php } ?>
+                    <div class="clear"></div>
+                    <?php $footerLinks = osc_search_footer_links(); ?>
+                    <ul class="footer-links">
+                    <?php foreach($footerLinks as $f) { View::newInstance()->_exportVariableToView('footer_link', $f); ?>
+                        <?php if($f['total'] < 3) continue; ?>
+                        <li><a href="<?php echo osc_footer_link_url(); ?>"><?php echo osc_footer_link_title(); ?></a></li>
+                    <?php } ?>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <!-- END MAIN -->
+
+
+
+
             <script type="text/javascript">
                 $(function() {
                     function log( message ) {

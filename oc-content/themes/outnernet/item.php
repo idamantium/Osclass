@@ -34,8 +34,8 @@
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
      <div class="row">
-        <div class="content item shadow blurb">
-            <div id="item_head large-12 columns">
+        <div class="content item shadow blurb" id="item_head"> 
+            <div   class="large-9 columns">
                     <h1><?php if( osc_price_enabled_at_items() ) { ?><span class="price"><?php echo osc_item_formated_price(); ?></span> <?php } ?><strong><?php echo osc_item_title() . ' ' . osc_item_city(); ?></strong></h1>
                     <?php if(osc_is_web_user_logged_in() && osc_logged_user_id()==osc_item_user_id()) { ?>
                         <p id="edit_item_view">
@@ -44,6 +44,8 @@
                             </strong>
                         </p>
                     <?php } else { ?>
+                </div>
+                <div  class="large-3 columns">
                         <p id="report">
                             <strong><?php _e('Mark as', 'modern'); ?></strong>
                             <span>
@@ -58,20 +60,21 @@
               
             </div>
             <div class="row" id="main">
+                <div class="large-8 columns">
                 <div id="type_dates">
                     <strong><?php echo osc_item_category(); ?></strong>
 
                     <em>
 
                           <?php if (osc_item_dt_expiration() != '9999-12-31 23:59:59' )  echo __('Expires on', 'modern') . ': ' . osc_format_date( osc_item_dt_expiration() ); ?>
-                          <?php if (osc_item_dt_expiration() === '9999-12-31 23:59:59' )  echo __('Post never expires', 'modern'); ?>
+                          <?php if (osc_item_dt_expiration() === '9999-12-31 23:59:59' )  echo __('Never expires!', 'modern'); ?>
                     </em>
 
                     <em class="publish">
 
 
-                        <?php if ( osc_item_pub_date() != '' ) echo __('Published on', 'modern') . ': ' . osc_format_date( osc_item_pub_date() ); ?></em>
-                    <em class="update"><?php if ( osc_item_mod_date() != '' ) echo __('Modified date', 'modern') . ': ' . osc_format_date( osc_item_mod_date() ); ?></em>
+                        <?php if ( osc_item_pub_date() != '' ) echo __('Published', 'modern') . ': ' . osc_format_date( osc_item_pub_date() ); ?></em>
+                    <em class="update"><?php if ( osc_item_mod_date() != '' ) echo __('Modified', 'modern') . ': ' . osc_format_date( osc_item_mod_date() ); ?></em>
                 </div>
                 <ul id="item_location">
                     <?php if ( osc_item_country() != "" ) { ?><li><?php _e("Neighborhood", 'modern'); ?>: <strong><?php echo osc_item_country(); ?></strong></li><?php } ?>
@@ -81,6 +84,7 @@
                     <?php if ( osc_item_address() != "" ) { ?><li><?php _e("Address", 'modern'); ?>: <strong><?php echo osc_item_address(); ?></strong></li><?php } ?>
                 </ul>
                 <div id="description">
+
                     <p><?php echo osc_item_description(); ?></p>
                     <div id="custom_fields">
                         <?php if( osc_count_item_meta() >= 1 ) { ?>
@@ -96,6 +100,21 @@
                             </div>
                         <?php } ?>
                     </div>
+                    <?php if( osc_images_enabled_at_items() ) { ?>
+                    <?php if( osc_count_item_resources() > 0 ) { ?>
+                    <div id="photos">
+                        <?php for ( $i = 0; osc_has_item_resources(); $i++ ) { ?>
+                        <a href="<?php echo osc_resource_url(); ?>" rel="image_group" title="<?php _e('Image', 'modern'); ?> <?php echo $i+1;?> / <?php echo osc_count_item_resources();?>">
+                            <?php if( $i == 0 ) { ?>
+                            <img src="<?php echo osc_resource_url(); ?>" width="315" alt="<?php echo osc_item_title(); ?>" title="<?php echo osc_item_title(); ?>" />
+                            <?php } else { ?>
+                                <img src="<?php echo osc_resource_thumbnail_url(); ?>" width="75" alt="<?php echo osc_item_title(); ?>" title="<?php echo osc_item_title(); ?>" />
+                            <?php } ?>
+                        </a>
+                        <?php } ?>
+                    </div>
+                    <?php } ?>
+                <?php } ?>  
                     <?php osc_run_hook('item_detail', osc_item() ); ?>
                    <!-- <p class="contact_button">
                         <?php if( !osc_item_is_expired () ) { ?>
@@ -124,14 +143,14 @@
                 <?php if( osc_comments_enabled() ) { ?>
                     <?php if( osc_reg_user_post_comments () && osc_is_web_user_logged_in() || !osc_reg_user_post_comments() ) { ?>
                     <div id="comments">
-                        <h2><?php _e('Comments', 'modern'); ?></h2>
+                        <h4><?php _e('Comments', 'modern'); ?></h4>
                         <ul id="comment_error_list"></ul>
                         <?php CommentForm::js_validation(); ?>
                         <?php if( osc_count_item_comments() >= 1 ) { ?>
                             <div class="comments_list">
                                 <?php while ( osc_has_item_comments() ) { ?>
                                     <div class="comment">
-                                        <h3><strong><?php echo osc_comment_title(); ?></strong> <em><?php _e("by", 'modern'); ?> <?php echo osc_comment_author_name(); ?>:</em></h3>
+                                        <h5><strong><?php echo osc_comment_title(); ?></strong> <em><?php _e("by", 'modern'); ?> <?php echo osc_comment_author_name(); ?>:</em></h5>
                                         <p><?php echo nl2br( osc_comment_body() ); ?> </p>
                                         <?php if ( osc_comment_user_id() && (osc_comment_user_id() == osc_logged_user_id()) ) { ?>
                                         <p>
@@ -147,7 +166,7 @@
                         <?php } ?>
                         <form action="<?php echo osc_base_url(true); ?>" method="post" name="comment_form" id="comment_form">
                             <fieldset>
-                                <h3><?php _e('Leave your comment', 'modern'); ?></h3>
+                                <h4><?php _e('Leave a comment', 'modern'); ?></h4>
                                 <input type="hidden" name="action" value="add_comment" />
                                 <input type="hidden" name="page" value="item" />
                                 <input type="hidden" name="id" value="<?php echo osc_item_id(); ?>" />
@@ -167,24 +186,11 @@
                     <?php } ?>
                 <?php } ?>
             </div>
-            <div id="sidebar">
-                <?php if( osc_images_enabled_at_items() ) { ?>
-                    <?php if( osc_count_item_resources() > 0 ) { ?>
-                    <div id="photos">
-                        <?php for ( $i = 0; osc_has_item_resources(); $i++ ) { ?>
-                        <a href="<?php echo osc_resource_url(); ?>" rel="image_group" title="<?php _e('Image', 'modern'); ?> <?php echo $i+1;?> / <?php echo osc_count_item_resources();?>">
-                            <?php if( $i == 0 ) { ?>
-                            <img src="<?php echo osc_resource_url(); ?>" width="315" alt="<?php echo osc_item_title(); ?>" title="<?php echo osc_item_title(); ?>" />
-                            <?php } else { ?>
-                                <img src="<?php echo osc_resource_thumbnail_url(); ?>" width="75" alt="<?php echo osc_item_title(); ?>" title="<?php echo osc_item_title(); ?>" />
-                            <?php } ?>
-                        </a>
-                        <?php } ?>
-                    </div>
-                    <?php } ?>
-                <?php } ?>
+       
+            <div class="large-4 columns" id="sidebar">
+                
                 <div id="contact">
-                    <h2><?php _e("Contact publisher", 'modern'); ?></h2>
+                    <h5><?php _e("Contact publisher", 'modern'); ?></h5>
                     <?php if( osc_item_is_expired () ) { ?>
                         <p>
                             <?php _e("The listing is expired. You can't contact the publisher.", 'modern'); ?>
