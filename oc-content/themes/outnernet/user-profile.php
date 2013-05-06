@@ -32,7 +32,8 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
-        <div class="content user_account">
+        <div class="row blurb shadow">
+        <div class="content user_account large-12 columns">
             <h1>
                 <strong><?php _e('User account manager', 'modern'); ?></strong>
             </h1>
@@ -137,6 +138,7 @@
                 <p>Update your profile at the <a href="<? echo OUTERNET_PROFILE_PAGE_URL; ?>">Outernet profile page</a>.</p>
             </div>
         </div>
+    </div>
 <!--        <div id="dialog-delete-account" title="<?php _e('Delete account', 'modern'); ?>" class="has-form-actions hide">
             <div class="form-horizontal">
                 <div class="form-row">

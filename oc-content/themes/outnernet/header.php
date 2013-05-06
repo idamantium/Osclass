@@ -4,18 +4,19 @@
 <!-- header -->
 
 
-<div class="row shadow blurb" id="header">
-    <div class="small-3 large-4 columns">
+<div class="shadow blurb" id="header">
+    <div class="row">
+    <div class="small-8 large-4 columns">
     <a id="logo" href="<?php echo osc_base_url(); ?>"><?php echo logo_header(); ?></a>
-</div>
-<div class="small-9 large-8 columns">
+    </div>
+    <div class="small-4 large-8 columns">
     <div id="user_menu">
         <ul>
             <?php if(osc_users_enabled()) { ?>
                 <?php if( osc_is_web_user_logged_in() ) { ?>
                     <li class="first logged">
-                        <?php echo sprintf(__('Hi %s', 'modern'), osc_logged_user_name() . '!'); ?>  &middot;
-                        <strong><a href="<?php echo osc_user_dashboard_url(); ?>"><?php _e('My account', 'modern'); ?></a></strong> &middot;
+                        <?php echo sprintf(__('Hi %s', 'modern'), osc_logged_user_name() . '!'); ?>  <br />
+                        <strong><a href="<?php echo osc_user_dashboard_url(); ?>"><?php _e('My account', 'modern'); ?></a></strong>
                         <a href="<?php echo osc_user_logout_url(); ?>"><?php _e('Logout', 'modern'); ?></a>
                     </li>
                 <?php } else { ?>
@@ -64,7 +65,7 @@
         <?php } ?>
         <div class="empty"></div>
     </div>
-
+</div>
 
 </div> <!-- end header div -->
 

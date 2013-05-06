@@ -53,7 +53,9 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
-        <div class="content item user_public_profile">
+         <div class="row blurb shadow">
+        <div class="content item user_public_profile large-12 columns">
+
             <div id="item_head">
                 <div class="inner">
                     <h1><?php echo sprintf(__('%s\'s profile', 'modern'), osc_user_name()); ?></h1>
@@ -147,6 +149,7 @@
                 <?php } ?>
             </div>
         </div>
+    </div>
         <?php osc_current_web_theme_path('footer.php'); ?>
     </body>
 </html>

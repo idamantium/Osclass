@@ -57,7 +57,8 @@
     </head>
     <body>
         <?php osc_current_web_theme_path('header.php'); ?>
-        <div class="content user_account">
+         <div class="row blurb shadow">
+        <div class="content user_account large-12 columns">
             <h1>
                 <strong><?php _e('User account manager', 'modern'); ?></strong>
             </h1>
@@ -85,6 +86,7 @@
                 </form>
             </div>
         </div>
+    </div>
         <?php osc_current_web_theme_path('footer.php'); ?>
     </body>
 </html>
